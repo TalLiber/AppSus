@@ -11,16 +11,21 @@ const loggedinUser = {
 _createEmails()
 
 export const emailService = {
-    query
+    query,
+    get
 }
 
 function query() {
     return storageService.query(EMAILS_KEY)
 }
+function get(emailId) {
+    return storageService.get(EMAILS_KEY, emailId)
+}
 
 
 
 
+// Local Funcs-factory
 function _createEmails() {
     let emails = utilService.loadFromStorage(EMAILS_KEY)
 
@@ -38,6 +43,7 @@ function _createEmail() {
     const name = utilService.makeName()
     const email = {
         id: utilService.makeId(),
+        tab: 'inbox',
         name: name,
         subject: utilService.makeLorem(3),
         body: utilService.makeLorem(50),

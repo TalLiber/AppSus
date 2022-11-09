@@ -2,24 +2,29 @@
 export default {
     props: ['email'],
     template: `
-    <section className="email-preview flex space-between">
+    <router-link :to="'/mail/list/' + email.id">
 
-        <h4>{{email.name}}</h4>
-        <div>
-            <!-- //todo inline style -->
-        <h4>{{email.subject}}</h4>
-            <span>{{getShortBody}}</span> 
-            </div>
-            <!-- //todo design date -->
-            <h5>{{email.sentAt}}</h5>
-
-    </section>
+        <section @click="openDetails(email.id)"
+        className="email-preview flex space-between">
+    
+            <h4>{{email.name}}</h4>
+                <!-- //todo inline style smaller span -->
+                <h4>{{email.subject}}<span class="small">{{getShortBody}}</span> </h4>
+                
+                <!-- //todo design date -->
+                <h5>{{email.sentAt}}</h5>
+    
+        </section>
+    </router-link>
 `,
     data() {
         return {
         }
     },
     methods: {
+        openDetails(emailId){
+            console.log(emailId)
+        } 
     },
     computed: {
         getShortBody() {
