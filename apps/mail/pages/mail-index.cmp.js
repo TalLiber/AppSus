@@ -1,8 +1,8 @@
 export default {
-    name: 'note-index',
+    name: 'mail-index',
     props: [],
     template: `
-        <h1>keep</h1>
+        <h1>mail</h1>
         `,
     components: {},
     created() {},
