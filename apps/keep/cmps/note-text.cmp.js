@@ -2,7 +2,7 @@ export default {
     name: 'note-text',
     props: ['info'],
     template: `
-            <h1>{{ info.text }}</h1>
+            <div>{{ info.text }}</div>
         `,
     components: {},
     created() {},

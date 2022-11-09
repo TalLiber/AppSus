@@ -3,6 +3,8 @@ import { storageService } from '../../../services/async-storage.service.js'
 
 export const noteService = {
     query,
+    getEmptyNote,
+    save,
 }
 
 var gNotes = [{
@@ -10,6 +12,7 @@ var gNotes = [{
         type: 'textNote',
         isPinned: false,
         info: {
+            title: 'gtrrg',
             text: 'Fullstack Me Baby!'
         }
     },
@@ -18,6 +21,7 @@ var gNotes = [{
         type: 'textNote',
         isPinned: false,
         info: {
+            title: 'gtrrg',
             text: 'Hello orem ipsum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumque et, quibusdam,'
         }
     },
@@ -26,6 +30,7 @@ var gNotes = [{
         type: 'textNote',
         isPinned: false,
         info: {
+            title: 'gtrrg',
             text: 'HelloLorem ipsum dolor sit amet consectetur adipisicing elit. Vero,veritatis, tempora incidunt maxime minus recusandae quam dignissimosminima qui fu orem ipsum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumque et, quibusdam,'
         }
     },
@@ -34,6 +39,7 @@ var gNotes = [{
         type: 'textNote',
         isPinned: false,
         info: {
+            title: 'gtrrg',
             text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumqueum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumque et, quibu et, quibusdam,'
         }
     },
@@ -42,6 +48,7 @@ var gNotes = [{
         type: 'textNote',
         isPinned: false,
         info: {
+            title: '',
             text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumqueum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumque et, quibu et, quibusdam,'
         }
     },
@@ -50,6 +57,7 @@ var gNotes = [{
         type: 'textNote',
         isPinned: false,
         info: {
+            title: '',
             text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumqueum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumque et, quibu et, quibusdam,'
         }
     },
@@ -58,6 +66,7 @@ var gNotes = [{
         type: 'textNote',
         isPinned: false,
         info: {
+            title: '',
             text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumqueum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumque et, quibu et, quibusdam,'
         }
     },
@@ -69,6 +78,26 @@ _createNotes()
 
 function query() {
     return storageService.query(STORAGE_KEY)
+}
+
+function save(note) {
+    if (note.id) {
+        return storageService.put(STORAGE_KEY, note)
+    } else {
+        return storageService.post(STORAGE_KEY, note)
+    }
+}
+
+function getEmptyNote() {
+    return {
+        id: '',
+        type: 'textNote',
+        isPinned: false,
+        info: {
+            title: '',
+            text: ''
+        }
+    }
 }
 
 function _createNotes() {
