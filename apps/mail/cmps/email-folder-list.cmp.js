@@ -1,28 +1,32 @@
-
+import { eventBus } from "../../../services/event-bus.service.js"
 
 export default {
     props: [],
     template: `
-<section class="email-folder-list flex column">
+        <section class="email-folder-list flex column">
+        <!-- //todo-svg for all divs\ -->
+        <h2>email-folder-list</h2>
+        <div>
+        Compose
+        </div>
+        <div @click="setToInbox()">
+        inbox
 
-<h2>email-folder-list</h2>
-<div>
-    Compose
-</div>
-<div>
-    inbox
-</div>
-<div>
-    starred
-</div>
-<div>
-    important
-</div>
-<div>
-    sent
-</div>
+        </div>
+        <div @click="setTab('star')">
+        starred
+        </div>
+        <div>
+        important
+        </div>
+        <div>
+        sent
+        </div>
+        <div @click="setTab('trash')">
+            trash
+        </div>
 
-</section>
+        </section>
 
 `,
     data() {
@@ -30,6 +34,12 @@ export default {
         }
     },
     methods: {
+        setToInbox(){
+            eventBus.emit('setFilterTab','')
+        } ,
+        setTab(tab){
+            eventBus.emit('setFilterTab',tab)
+        }
     },
     computed: {
     },
