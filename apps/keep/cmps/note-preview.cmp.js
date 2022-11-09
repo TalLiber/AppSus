@@ -4,8 +4,11 @@ export default {
     name: 'note-preview',
     props: ['note'],
     template: `
-    <section class=""></section>
-            <component :is="note.type" :info="note.info"></component>
+            <section class="note-title"></section>
+            <section class="note-content">
+                <component :is="note.type" :info="note.info"></component>
+            </section>
+            <section class="note-actions"></section>
         `,
     created() {},
     data() {
