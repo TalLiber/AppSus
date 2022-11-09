@@ -10,6 +10,7 @@ const options = {
 	template: `
         <section>
             <app-header />
+            <h2>Working</h2>
             <router-view />
             <app-footer />
             <user-msg />
