@@ -1,0 +1,13 @@
+
+
+@import './e-cmps/email-filter.cmp.css';
+@import './e-cmps/email-folder-list.cmp.css';
+@import './e-cmps/email-list.cmp.css';
+
+.email-app{
+    background-color: lightpink;
+    flex: 1;
+}
+/* .main-content{
+    flex: 1;
+} */

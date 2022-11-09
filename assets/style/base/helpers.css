@@ -8,6 +8,13 @@
     flex-direction: column;
 }
 
+.flex.column{
+    flex-direction: column;
+}
+.flex.grow{
+    flex:1;
+}
+
 .flex.justify-center{
     justify-content: center;
 }

@@ -1,5 +1,5 @@
 export const noteService = {
-    getNotes,
+    // getNotes,
 }
 
 var notes = [{
