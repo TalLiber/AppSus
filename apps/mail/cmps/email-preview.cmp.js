@@ -7,6 +7,7 @@ export default {
         <section @click="openDetails(email.id)"
         className="email-preview flex space-between">
     
+        <!-- //todo add star indication -->
             <h4>{{email.name}}</h4>
                 <!-- //todo inline style smaller span -->
                 <h4>{{email.subject}}<span class="small">{{getShortBody}}</span> </h4>

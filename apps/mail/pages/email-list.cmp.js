@@ -10,7 +10,7 @@ export default {
     <ul class="clean-list">
         <li v-for="email in emails" :key="email.id"
         class="">
-       <email-preview :email="email "/>
+       <email-preview  :email="email"/>
 
         </li>
     </ul>
@@ -19,14 +19,28 @@ export default {
 `,
     data() {
         return {
-            emails: []
+            emails: [],
+            filterTab: ''
         }
     },
     created() {
         emailService.query()
-            .then(emails => this.emails = emails)
+            .then(emails => this.emails = this.getEmailsByTab(emails))
+    },
+    // todo-maybe to change that hook
+    mounted(){
+        emailService.query()
+        .then(emails => this.emails = this.getEmailsByTab(emails))
     },
     methods: {
+        getEmailsByTab(emails) {
+            //inbox||starred
+            let filteredEmails
+            if (!this.filterTab) {
+                filteredEmails = emails.filter(e => (e.tab === 'inbox' || e.tab === 'star'))
+            }
+            return filteredEmails
+        }
     },
     computed: {
     },

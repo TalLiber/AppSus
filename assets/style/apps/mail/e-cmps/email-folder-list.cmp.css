@@ -2,3 +2,8 @@
 .email-folder-list{
     background-color: antiquewhite;
 }
+.email-folder-list>*{
+cursor: pointer;
+margin-bottom: 10px;
+background-color: lightblue;
+}

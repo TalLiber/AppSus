@@ -30,17 +30,29 @@ const mailSvgs = {
   snooze: `https://ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/schedule_baseline_nv700_20dp.png`,
   sent: `https://ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/send_baseline_nv700_20dp.png`,
   times: `https://ssl.gstatic.com/ui/v1/icons/mail/rfr/ic_close_16px_1x.png/`,
+  readStat: 'https://ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/mail_baseline_nv700_20dp.png',
+  trash: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15 4V3H9v1H4v2h1v13c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6h1V4h-5zm2 15H7V6h10v13z"></path><path d="M9 8h2v9H9zm4 0h2v9h-2z"></path></svg>`,
+  star:'https://ssl.gstatic.com/ui/v1/icons/mail/gm3/2x/star_baseline_nv700_20dp.png',
+  
+
+
 }
 
 function getSvg(iconName) {
   return KeepSvgs[iconName]
 }
-export const svgService = { getSvg }
+
+function getMailSvg(iconName) {
+  return mailSvgs[iconName]
+}
+
+export const svgService = { getSvg , getMailSvg}
 // in template
 // <div className="icon" v-html="getSvg('bars')"></div>
 // <img style="width:24px; height:24px" :src="getSvg('add')" alt="" />
 
 // in methodes
-function getSvg(iconName) {
-    return svgService.getSvg(iconName)
-  }
+// function getSvg(iconName) {
+//     return svgService.getSvg(iconName)
+//   }
+
