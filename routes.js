@@ -24,7 +24,7 @@ const routerOptions = {
         name: 'email-app',
         children: [
             {
-                path:'/mail/inbox',
+                path:'/mail/list',
                 component:emailList
             }
         ]

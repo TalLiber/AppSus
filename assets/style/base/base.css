@@ -9,6 +9,10 @@
 body {
   margin: 0;
   color: var(--clr4);
+  height: 100vh;
+}
+#app{
+  height: 100%;
 }
 
 h1,

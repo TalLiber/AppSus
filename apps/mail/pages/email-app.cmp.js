@@ -11,13 +11,13 @@ export default {
     name: 'email-app',
     props: [],
     template: `
-    <section class="email-app flex">
+    <section class="email-app flex full-height">
+        <!-- //todo handle filters -->
         <!-- <email-filter></email-filter> -->
         <email-folder-list></email-folder-list>
         <div class="main-content">
+
             <router-view>
-                <email-list></email-list>
-                
                  </router-view>
         </div>
 
