@@ -1,7 +1,7 @@
 
 import { storageService } from '../../../services/async-storage.service.js'
 import { utilService } from '../../../services/util.service.js'
-const EMAIL_KEY = 'emailDB'
+const EMAILS_KEY = 'emailDB'
 
 const loggedinUser = {
     email: 'user@appsus.com',
@@ -11,11 +11,23 @@ const loggedinUser = {
 _createEmails()
 
 export const emailService = {
-
+    query,
+    get
 }
 
+function query() {
+    return storageService.query(EMAILS_KEY)
+}
+function get(emailId) {
+    return storageService.get(EMAILS_KEY, emailId)
+}
+
+
+
+
+// Local Funcs-factory
 function _createEmails() {
-    let emails = utilService.loadFromStorage(EMAIL_KEY)
+    let emails = utilService.loadFromStorage(EMAILS_KEY)
 
     if (!emails || !emails.length) {
         emails = []
@@ -23,18 +35,18 @@ function _createEmails() {
             emails.push(_createEmail())
         }
     }
-    utilService.saveToStorage(EMAIL_KEY, emails)
+    utilService.saveToStorage(EMAILS_KEY, emails)
     return emails
-
 }
 
 function _createEmail() {
     const name = utilService.makeName()
     const email = {
         id: utilService.makeId(),
+        tab: 'inbox',
         name: name,
-        subject: utilService.makeLorem(4),
-        body: utilService.makeLorem(20),
+        subject: utilService.makeLorem(3),
+        body: utilService.makeLorem(50),
         isRead: false,
         sentAt: Date.now(),
         from: `${name}@gmail.com`,

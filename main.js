@@ -8,11 +8,11 @@ import userMsg from './cmps/user-msg.cmp.js'
 
 const options = {
     template: `
-        <section >
+        <section class="full-height" >
             <app-header />
-          
-                <router-view />
-           
+          <div class="router-view-wrapper full-height">
+              <router-view />
+          </div>
             <app-footer />
             <user-msg />
         </section>
