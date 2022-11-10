@@ -14,19 +14,11 @@ export default {
             </section>
         `,
     created() {
-
+        this.note = noteService.getEmptyNote()
     },
     data() {
         return {
-            note: {
-                id: '',
-                type: 'textNote',
-                isPinned: false,
-                info: {
-                    title: '',
-                    text: ''
-                }
-            }
+            note: null
         }
     },
     methods: {

@@ -1,38 +1,24 @@
-import { noteService } from '../services/note.service.js'
-import notePreview from '../cmps/note-preview.cmp.js'
-import addNote from '../cmps/note-add.cmp.js'
+import sideNav from '../cmps/side-nav.cmp.js'
 
 export default {
     name: 'note-index',
     props: [],
     template: `
-        <section class="main-content">
-            <section class="side-nav"></section>
-            <section class="notes-content">
-                <add-note @added="addNote"></add-note>
-                <section class="notes-list" v-if="notes">
-                    <note-preview v-for="(note, idx) in notes" :note="note" :key="idx"/>
-                </section>
+        <section class="main-container">
+            <side-nav></side-nav>
+            <section class="content-container">
+                <router-view></router-view>
             </section>
         </section>
+
         `,
-    created() {
-        noteService.query()
-            .then(notes => this.notes = notes)
-    },
+    created() {},
     data() {
-        return {
-            notes: null
-        }
+        return {}
     },
-    methods: {
-        addNote(note) {
-            this.notes.push(note)
-        }
-    },
+    methods: {},
     computed: {},
     components: {
-        notePreview,
-        addNote,
+        sideNav,
     },
 }
