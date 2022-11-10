@@ -24,6 +24,20 @@ var gNotes = [{
         }
     },
     {
+        id: 'n100',
+        type: 'todoNote',
+        isPinned: false,
+        isTrashed: false,
+        color: '#16a085',
+        info: {
+            title: 'gtrrg',
+            todos: [
+                { text: 'Driving liscence', doneAt: null },
+                { text: 'Coding power', doneAt: Date.now() },
+            ]
+        }
+    },
+    {
         id: 'n102',
         type: 'textNote',
         isPinned: false,
@@ -149,6 +163,7 @@ function getEmptyNote() {
         isPinned: false,
         isTrashed: false,
         color: '',
+        imgUrl: '',
         info: {
             title: '',
             text: ''
@@ -156,19 +171,20 @@ function getEmptyNote() {
     }
 }
 
-function createImg(ev, onImageReady = "loadImg") {
+function createImg(ev) {
     const reader = new FileReader()
 
     reader.onload = function(event) {
         let img = new Image()
         img.src = event.target.result
-        img.onload = onImageReady.bind(null, img)
+        img.onload = loadImg.bind(null, img)
+
     }
     reader.readAsDataURL(ev.target.files[0])
 }
 
 function loadImg(img) {
-    console.log(img);
+    return img
 }
 
 

@@ -8,10 +8,6 @@ export default {
     props: [],
     template: `
             <section class="notes-content">
-            <label class="gallery-img upload"><div class="upload-header">Upload Image </div>
-                <input type="file" class="file-input btn" name="image" @change="onImgInput" style="display: none"/>
-            </label>
-
                 <note-filter @filter="setFilter" />
                 <add-note @added="addNote" />
                 <section class="notes-list" v-if="notes">
@@ -67,7 +63,7 @@ export default {
             // duplicate
         },
         onImgInput(ev) {
-            noteService.createImg(ev, 'loadImg')
+            noteService.createImg(ev)
         },
     },
     computed: {

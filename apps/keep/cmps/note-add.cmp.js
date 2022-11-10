@@ -1,16 +1,24 @@
 import { noteService } from '../services/note.service.js'
+import { svgService } from '../../../services/svg.service.js'
 
 export default {
     name: 'note-add',
     template: `
             <section class="add-note">
-                <section class="add-note-title">
+                <img src="" />
+                <span class="add-note-title">
                     <input v-model="note.info.title" type="text" placeholder="Title"/>
-                </section>
-                <section class="add-note-content">
+                </span>
+                <span class="add-note-content">
                     <input type="text" v-model="note.info.text" placeholder="Take a note..."/>
-                </section>
-                <button @click="saveNote">Close</button>
+                </span>
+                <button @click="saveNote">Close</button>                    
+                <label class="gallery-img upload">
+                    <span class="icon">
+                        <img style="width:18px; height:18px" :src="getSvg('img')"/>
+                    </span>
+                    <input type="file" class="file-input btn" name="image" @change="getImgUrl" style="display: none"/>
+                </label>
             </section>
         `,
     created() {
@@ -18,10 +26,14 @@ export default {
     },
     data() {
         return {
-            note: null
+            note: null,
+            imgEv: ''
         }
     },
     methods: {
+        getSvg(iconName) {
+            return svgService.getSvg(iconName)
+        },
         saveNote() {
             noteService.save(this.note)
                 .then(note => {
@@ -29,6 +41,10 @@ export default {
                     this.note = noteService.getEmptyNote()
                 })
         },
+        getImgUrl(ev) {
+            const url = noteService.createImg(ev)
+            console.log(url);
+        }
     },
     computed: {},
     components: {},

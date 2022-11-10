@@ -44,7 +44,11 @@ const mailSvgs = {
 function getSvg(iconName) {
     return KeepSvgs[iconName]
 }
-export const svgService = { getSvg }
+function getMailSvg(iconName) {
+    return mailSvgs[iconName]
+  }
+export const svgService = { getSvg, getMailSvg }
+
     // in template
     // <div className="icon" v-html="getSvg('bars')"></div>
     // <img style="width:24px; height:24px" :src="getSvg('add')" alt="" />

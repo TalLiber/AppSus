@@ -6,10 +6,10 @@ export default {
         <section class="email-folder-list flex column">
         <!-- //todo-svg for all divs\ -->
         <h2>email-folder-list</h2>
-        <div>
+        <div @click="composeEmail()">
         Compose
         </div>
-        <div @click="setToInbox()">
+        <div @click="setTab('inbox')">
         inbox
 
         </div>
@@ -19,7 +19,7 @@ export default {
         <div>
         important
         </div>
-        <div>
+        <div @click="setTab('sent')">
         sent
         </div>
         <div @click="setTab('trash')">
@@ -34,11 +34,13 @@ export default {
         }
     },
     methods: {
-        setToInbox(){
-            eventBus.emit('setFilterTab','')
-        } ,
-        setTab(tab){
-            eventBus.emit('setFilterTab',tab)
+        setTab(tab) {
+            this.$router.push({ path: '/mail/list', query: { tab: `${tab}` } })
+        },
+        composeEmail() {
+            const tab = this.$route.query.tab
+            this.$router.push({ path: '/mail/list', 
+            query: { tab, compose: 'new' }})
         }
     },
     computed: {

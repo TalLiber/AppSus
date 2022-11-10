@@ -1,6 +1,7 @@
 
 .email-folder-list{
     background-color: antiquewhite;
+    width: 250px;
 }
 .email-folder-list>*{
 cursor: pointer;

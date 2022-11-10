@@ -1,0 +1,16 @@
+
+.email-compose{
+position: fixed;
+bottom: 0;
+right: 50px;
+background-color: aquamarine;
+width: 60%;
+padding: 10px;
+height: 60vh;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+}
+
+.email-compose button{
+    align-self: flex-start;
+}

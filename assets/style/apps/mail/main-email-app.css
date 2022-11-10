@@ -5,6 +5,7 @@
 @import './e-cmps/email-list.cmp.css';
 @import './e-cmps/email-preview.cmp.css';
 @import './e-cmps/email-details.cmp.css';
+@import './e-cmps/email-compose.cmp.css';
 
 .email-app{
     background-color: lightpink;
