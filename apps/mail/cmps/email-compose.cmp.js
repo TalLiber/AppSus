@@ -7,7 +7,8 @@ export default {
         <header class="flex space-between">
             <h4>New Message</h4>
             <div>
-                <button>X</button>
+                
+                <button @click="this.$router.back()">X</button>
             </div>
         </header>
             <form class="flex column grow" @submit.prevent="sendEmail" >
@@ -16,8 +17,6 @@ export default {
                 <textarea name="" class="grow" v-model="emailProps.body" ></textarea>
                 <button>Send</button>
             </form>
-
-
     </section>
     `,
     data() {
@@ -29,12 +28,12 @@ export default {
             }
         }
     },
+    //todo-consider make that cmp stupid and emit props
     methods: {
         sendEmail() {
             const { emailProps: { to, subject, body } } = this
             emailService.sendEmail(to,subject,body)
             .then(()=>{
-                console.log('change the route stat')
                 this.$router.back()
             })
         }

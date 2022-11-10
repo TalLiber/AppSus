@@ -39,9 +39,7 @@ export default {
     },
     created() {
         this.loadEmailDetails()
-        console.log(this.$route)
         this.prvTab = this.$route.query.tab
-        console.log(this.prvTab)
     },
     methods: {
         loadEmailDetails() {
