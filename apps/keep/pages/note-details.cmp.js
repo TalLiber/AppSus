@@ -10,14 +10,15 @@ export default {
     props: ['id'],
     template: `
             <section v-if="note" class="note-details" :style='{backgroundColor: note.color}'>
-                <!-- <section class="details-preview"> -->
+                <section class="details-preview">
+                    <img :src="note.imgUrl" class="note-img" />
                     <section contenteditable="true" @input="onChangeTitle" class="note-title">{{ note.info.title }}</section>
                     <section class="note-content">
-                        <component @update="update" :is="note.type" :info="note.info"></component>
+                        <component @update="update" :is="note.type" :info="note.info" :isDetails="true"></component>
                     </section>
-                    <note-actions @update="update"></note-actions>
+                    <note-actions @updateImgUrl="getImgUrl" @update="update"></note-actions>
                     <button @click="close" class="close-btn">Close</button>
-                <!-- </section>   -->
+                </section>  
             </section>  
         `,
     created() {
@@ -46,6 +47,10 @@ export default {
         },
         onChangeTitle(ev) {
             this.update('title', ev.target.innerText)
+        },
+        async getImgUrl(ev) {
+            const url = await noteService.createImg(ev)
+            this.update('imgUrl', url)
         }
     },
     computed: {},

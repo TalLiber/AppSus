@@ -8,14 +8,10 @@ export default {
     props: [],
     template: `
             <section class="notes-content">
-            <!-- <label class="gallery-img upload"><div class="upload-header">Upload Image </div>
-                <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" style="display: none"/>
-            </label> -->
-
                 <note-filter @filter="setFilter" />
                 <add-note @added="addNote" />
                 <section class="notes-list" v-if="notes">
-                    <note-preview @update="updateNote" v-for="(note, idx) in notesToShow" :note="note" :key="idx"/>
+                    <note-preview @updateImgUrl="getImgUrl" @update="updateNote" v-for="(note, idx) in notesToShow" :note="note" :key="idx"/>
                 </section>
                 <router-view></router-view>
             </section>
@@ -65,6 +61,10 @@ export default {
         },
         otherActions() {
             // duplicate
+        },
+        async getImgUrl(noteId, ev) {
+            const url = await noteService.createImg(ev)
+            this.updateNote(noteId, 'imgUrl', url)
         }
     },
     computed: {

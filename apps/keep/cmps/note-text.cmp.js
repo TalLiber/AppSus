@@ -1,8 +1,8 @@
 export default {
     name: 'note-text',
-    props: ['info'],
+    props: ['info', 'isDetails'],
     template: `
-            <div contenteditable="true" @input="onChangeText">{{ info.text }}</div>
+            <div :contenteditable="isDetails" @input="onChangeText">{{ info.text }}</div>
         `,
     components: {},
     created() {},

@@ -9,6 +9,7 @@ export const noteService = {
     remove,
     getNotesToShow,
     updateNote,
+    createImg,
 }
 
 var gNotes = [{
@@ -20,6 +21,20 @@ var gNotes = [{
         info: {
             title: 'gtrrg',
             text: 'Fullstack Me Baby!'
+        }
+    },
+    {
+        id: 'n100',
+        type: 'todoNote',
+        isPinned: false,
+        isTrashed: false,
+        color: '#16a085',
+        info: {
+            title: 'gtrrg',
+            todos: [
+                { text: 'Driving liscence', doneAt: null },
+                { text: 'Coding power', doneAt: Date.now() },
+            ]
         }
     },
     {
@@ -123,6 +138,8 @@ function updateNote(noteId, prop, toUpdate) {
                 case 'title':
                     note.info.title = toUpdate
                     break
+                case 'imgUrl':
+                    note.imgUrl = toUpdate
             }
             save(note)
             return (note)
@@ -148,11 +165,26 @@ function getEmptyNote() {
         isPinned: false,
         isTrashed: false,
         color: '',
+        imgUrl: '',
         info: {
             title: '',
             text: ''
         }
     }
+}
+
+function createImg(ev) {
+    return new Promise(resolve => {
+        const reader = new FileReader()
+
+        reader.onload = function(event) {
+            let img = new Image()
+            img.src = event.target.result
+
+            resolve(img.src)
+        }
+        reader.readAsDataURL(ev.target.files[0])
+    })
 }
 
 function _createNotes() {
