@@ -9,6 +9,7 @@ export const noteService = {
     remove,
     getNotesToShow,
     updateNote,
+    createImg,
 }
 
 var gNotes = [{
@@ -154,6 +155,22 @@ function getEmptyNote() {
         }
     }
 }
+
+function createImg(ev, onImageReady = "loadImg") {
+    const reader = new FileReader()
+
+    reader.onload = function(event) {
+        let img = new Image()
+        img.src = event.target.result
+        img.onload = onImageReady.bind(null, img)
+    }
+    reader.readAsDataURL(ev.target.files[0])
+}
+
+function loadImg(img) {
+    console.log(img);
+}
+
 
 function _createNotes() {
     let notes = utilService.loadFromStorage(STORAGE_KEY)
