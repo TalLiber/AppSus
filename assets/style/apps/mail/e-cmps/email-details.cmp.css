@@ -1,4 +1,29 @@
 
 .email-details{
     background-color: lightgreen;
+    padding: 15px;
 }
+
+.email-details>*{
+    margin-bottom: 15px;
+}
+
+.action-bar>*{
+    margin-inline-end: 15px;
+    cursor: pointer;
+}
+
+.details-content{
+    flex:1;
+    max-height: 350px;
+}
+
+.details-content header{
+    margin-bottom: 30px;
+}
+
+.details-content p{
+    width:70%;
+    line-height: 1.25; 
+}
+
