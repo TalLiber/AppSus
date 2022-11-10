@@ -11,7 +11,7 @@ export default {
                 <note-filter @filter="setFilter" />
                 <add-note @added="addNote" />
                 <section class="notes-list" v-if="notes">
-                    <note-preview @update="updateNote" v-for="(note, idx) in notesToShow" :note="note" :key="idx"/>
+                    <note-preview @updateImgUrl="getImgUrl" @update="updateNote" v-for="(note, idx) in notesToShow" :note="note" :key="idx"/>
                 </section>
                 <router-view></router-view>
             </section>
@@ -62,9 +62,10 @@ export default {
         otherActions() {
             // duplicate
         },
-        onImgInput(ev) {
-            noteService.createImg(ev)
-        },
+        async getImgUrl(noteId, ev) {
+            const url = await noteService.createImg(ev)
+            this.updateNote(noteId, 'imgUrl', url)
+        }
     },
     computed: {
         notesToShow() {

@@ -5,7 +5,7 @@ export default {
     name: 'note-add',
     template: `
             <section class="add-note">
-                <img src="" />
+                <img :src="imgUrl" class="note-img" />
                 <span class="add-note-title">
                     <input v-model="note.info.title" type="text" placeholder="Title"/>
                 </span>
@@ -13,7 +13,7 @@ export default {
                     <input type="text" v-model="note.info.text" placeholder="Take a note..."/>
                 </span>
                 <button @click="saveNote">Close</button>                    
-                <label class="gallery-img upload">
+                <label>
                     <span class="icon">
                         <img style="width:18px; height:18px" :src="getSvg('img')"/>
                     </span>
@@ -27,7 +27,6 @@ export default {
     data() {
         return {
             note: null,
-            imgEv: ''
         }
     },
     methods: {
@@ -41,11 +40,15 @@ export default {
                     this.note = noteService.getEmptyNote()
                 })
         },
-        getImgUrl(ev) {
-            const url = noteService.createImg(ev)
-            console.log(url);
+        async getImgUrl(ev) {
+            const url = await noteService.createImg(ev)
+            this.note.imgUrl = url
         }
     },
-    computed: {},
+    computed: {
+        imgUrl() {
+            return this.note.imgUrl
+        }
+    },
     components: {},
 }

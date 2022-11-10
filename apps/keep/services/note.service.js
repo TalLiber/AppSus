@@ -138,6 +138,8 @@ function updateNote(noteId, prop, toUpdate) {
                 case 'title':
                     note.info.title = toUpdate
                     break
+                case 'imgUrl':
+                    note.imgUrl = toUpdate
             }
             save(note)
             return (note)
@@ -172,21 +174,18 @@ function getEmptyNote() {
 }
 
 function createImg(ev) {
-    const reader = new FileReader()
+    return new Promise(resolve => {
+        const reader = new FileReader()
 
-    reader.onload = function(event) {
-        let img = new Image()
-        img.src = event.target.result
-        img.onload = loadImg.bind(null, img)
+        reader.onload = function(event) {
+            let img = new Image()
+            img.src = event.target.result
 
-    }
-    reader.readAsDataURL(ev.target.files[0])
+            resolve(img.src)
+        }
+        reader.readAsDataURL(ev.target.files[0])
+    })
 }
-
-function loadImg(img) {
-    return img
-}
-
 
 function _createNotes() {
     let notes = utilService.loadFromStorage(STORAGE_KEY)

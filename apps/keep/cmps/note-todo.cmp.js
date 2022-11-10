@@ -2,7 +2,11 @@ export default {
     name: 'note-todo',
     props: ['info'],
     template: `
-        <h1>22</h1>
+        <ul>
+            <li v-for="(todo, idx) in info.todos">
+                {{ todo.text }}
+            </li>
+        </ul>
         `,
     components: {},
     created() {},
