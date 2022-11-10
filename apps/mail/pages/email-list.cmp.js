@@ -11,9 +11,12 @@ export default {
     
     <ul class="clean-list">
         <li  v-for="email in emailsToShow" :key="email.id">
+            <!-- //todo consider make preview as smart cmp -->
        <email-preview  :email="email" :filterTab="filterTab"
        @isRead="setEmailReadStat"
-       @toggleStar="toggleStarTab"/>
+       @toggleStar="toggleStarTab"
+       @toTrashFolder="setToTrashFolder"
+       @removeEmail="removeEmail"/>
         </li>
     </ul>
 
@@ -25,16 +28,16 @@ export default {
         return {
             emails: null,
             filterTab: '',
-            filterBy: {}
-            // filteredEmails:
+            filterBy: {},
+            sortBy: ''
         }
     },
 
     created() {
         this.filterTab = this.$route.query.tab
         this.getEmailsByTab()
-
         eventBus.on('filter-by', this.setFilterByProp)
+        eventBus.on('sort-by', this.setSortByProp)
     },
 
     methods: {
@@ -52,17 +55,29 @@ export default {
                 })
         },
         setFilterByProp(filterBy) {
-
             this.filterBy = filterBy
-            console.log(this.filterBy)
+        },
+        setSortByProp(sortBy) {
+            this.sortBy = sortBy
         },
         setEmailReadStat(email) {
             emailService.put(email)
+            //todo-compact those funcs-add query() to render relevant
+            // .then(()=>emailService.query()
+            // .then(emails => this.emails = emails))
         },
         toggleStarTab(email) {
             emailService.put(email)
-        }
+        },
+        setToTrashFolder(email) {
+            emailService.put(email)
+                .then(() => this.getEmailsByTab())
 
+        },
+        removeEmail(email) {
+            emailService.removeEmail(email.id)
+                .then(() => this.getEmailsByTab())
+        }
     },
     computed: {
         isCompose() {
@@ -72,14 +87,23 @@ export default {
         emailsToShow() {
             const { name, readStat } = this.filterBy
             if (!name && !readStat) return this.emails
+
             const regex = new RegExp(name, 'i')
             var emails = this.emails.filter(e => regex.test(e.name))
 
-            if (readStat !== undefined) {
+            if (readStat.length && readStat !== 'All') {
                 if (readStat === 'Read') emails = emails.filter(e => e.isRead)
                 else emails = emails.filter(e => !e.isRead)
             }
+
             return emails
+        },
+        sortByOrder() {
+            if (this.sortBy === 'name') {
+                this.emails.sort((e1, e2) => e1.name.localeCompare(e2.name))
+            } else if (this.sortBy === 'date') {
+                this.emails.sort((e1, e2) => (e1.sentAt - e2.sentAt))
+            }
         }
     },
     components: {
@@ -99,5 +123,11 @@ export default {
             },
             deep: true
         },
+        sortBy: {
+            handler() {
+                this.sortByOrder
+            }
+        }
+
     }
 }

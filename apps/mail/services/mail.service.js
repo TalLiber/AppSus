@@ -14,8 +14,10 @@ export const emailService = {
     query,
     get,
     put,
-    sendEmail
+    sendEmail,
+    removeEmail,
 }
+
 
 function query() {
     return storageService.query(EMAILS_KEY)
@@ -26,6 +28,10 @@ function get(emailId) {
 
 function put(email) {
    return storageService.put(EMAILS_KEY, email)
+}
+function removeEmail(emailId){
+   return storageService.remove(EMAILS_KEY,emailId)
+    
 }
 
 function sendEmail(to,subject,body){
@@ -50,7 +56,7 @@ function _createEmails() {
 
     if (!emails || !emails.length) {
         emails = []
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < 16; i++) {
             emails.push(_createEmail())
         }
     }

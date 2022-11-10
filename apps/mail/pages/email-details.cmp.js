@@ -6,8 +6,8 @@ export default {
     props: [],
     template: `
 	<section className="email-details full-height flex column">
-
-		<section  class="action-bar flex">
+        
+		<section  class="action-bar flex align-center">
 			<!-- svgs btns -->
 			<img style="width:24px; height:24px" @click="backToList" :src="getMailSvg('back')" alt="" />
 			<div className="icon" @click="setTabToTrash('trash')" v-html="getMailSvg('trash')"></div>
@@ -19,7 +19,8 @@ export default {
 			<header class="flex space-between">
                 <!-- //todo date format -->
 				<h4> {{email.name}} <span class="small"> &lt;{{email.from}}&gt;</span></h4>
-                <span class="small">{{email.sentAt}}</span>
+                <!-- //todo more detailed date format -->
+                <span class="small">{{formattedDate}}</span>
 			</header>
             <p>{{email.body}}</p>
 		</section>
@@ -70,6 +71,11 @@ export default {
     computed: {
         emailId() {
             return this.$route.params.id
+        },
+        formattedDate() {
+            const month = new Date(this.email.sentAt).toLocaleString('default', { month: 'short' })
+            const day = new Date(this.email.sentAt).getDate()
+            return month + ' ' + day
         }
     },
     components: {
