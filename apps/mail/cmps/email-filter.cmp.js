@@ -4,13 +4,23 @@ export default {
     props: [],
     template: `
     <section className="email-filter flex space-between">
-        <input placeholder="Search mail" type="text" 
+        <input placeholder="Search mail" class="grow" type="text" 
         v-model="filterBy.name" @input="setFilter" />
 
-        <select v-model="filterBy.readStat" @input="setFilter">
+        <div class="select-wrapper flex">
+        <!-- //sort -->
+        <select v-model="sortBy" @change="setSort">
+        <option value="name">name</option>
+            <option value="date">date</option>
+        </select>
+
+        <!-- //todo set the function to onChange -->
+        <select  v-model="filterBy.readStat" @input="setFilter" >
+            <option >All</option>
             <option >Read</option>
             <option >unread</option>
         </select>
+        </div>
 
     </section>
 `,
@@ -19,13 +29,16 @@ export default {
             filterBy: {
                 name: '',
                 readStat: []
-            }
+            },
+            sortBy: 'name'
         }
     },
     methods: {
-        setFilter() {
-           
+        setFilter() { 
             eventBus.emit('filter-by', this.filterBy)
+        },
+        setSort(){
+            eventBus.emit('sort-by',this.sortBy)
         }
     },
     computed: {

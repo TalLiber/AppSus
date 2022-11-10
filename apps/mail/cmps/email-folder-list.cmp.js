@@ -1,30 +1,45 @@
-import { eventBus } from "../../../services/event-bus.service.js"
+
+import { svgService } from '../../../services/svg.service.js'
 
 export default {
     props: [],
     template: `
         <section class="email-folder-list flex column">
         <!-- //todo-svg for all divs\ -->
-        <h2>email-folder-list</h2>
-        <div @click="composeEmail()">
-        Compose
-        </div>
-        <div @click="setTab('inbox')">
-        inbox
+        <div class="compose-wrapper flex">
+            <div class="compose flex align-center center" @click="composeEmail()">
+                <div class="compose-icon" v-html="getMailSvg('pencil')"></div>
+            Compose
+            </div>
 
         </div>
+    <div ref="folder" class="folders-nav">
+
+        <div @click="setTab('inbox')" >
+        <img  style="width:24px; height:24px" :src="getMailSvg('inbox')" alt="" />
+        <span class="f-text">inbox</span>
+        </div>
+
         <div @click="setTab('star')">
-        starred
+        <img style="width:24px; height:24px" :src="getMailSvg('star')" alt="" />
+        <span class="f-text"> starred</span>
         </div>
         <div>
-        important
+        <img style="width:24px; height:24px" :src="getMailSvg('important')" alt="" />
+        <span class="f-text">important</span>
         </div>
         <div @click="setTab('sent')">
-        sent
+        <img style="width:24px; height:24px" :src="getMailSvg('sent')" alt="" />
+        <span class="f-text">sent</span>
         </div>
+
         <div @click="setTab('trash')">
-            trash
+        <div v-html="getMailSvg('trash')"></div>
+
+        <span class="f-text">trash</span>
         </div>
+
+     </div>
 
         </section>
 
@@ -33,18 +48,28 @@ export default {
         return {
         }
     },
+    // mounted(){
+    //    console.dir(this.$refs.folder.children) 
+    // },
     methods: {
         setTab(tab) {
             this.$router.push({ path: '/mail/list', query: { tab: `${tab}` } })
         },
         composeEmail() {
             const tab = this.$route.query.tab
-            this.$router.push({ path: '/mail/list', 
-            query: { tab, compose: 'new' }})
-        }
+            this.$router.push({
+                path: '/mail/list',
+                query: { tab, compose: 'new' }
+            })
+        },
+        getMailSvg(iconName) {
+            return svgService.getMailSvg(iconName)
+        },
     },
     computed: {
     },
     components: {
     }
 }
+
+//ssl.gstatic.com/ui/v1/icons/mail/rfr/create_gm_24_1x.png

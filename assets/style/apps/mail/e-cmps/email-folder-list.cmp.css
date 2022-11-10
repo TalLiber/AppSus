@@ -1,10 +1,61 @@
+.email-folder-list {
+    /* background-color: antiquewhite; */
+    background-color: #f6f8fc;
+    width: 400px;
+}
 
-.email-folder-list{
-    background-color: antiquewhite;
-    width: 250px;
+
+.email-folder-list>* {
+    cursor: pointer;
+    margin-bottom: 10px;
+    background-color: lightblue;
 }
-.email-folder-list>*{
-cursor: pointer;
-margin-bottom: 10px;
-background-color: lightblue;
+
+.compose-wrapper {
+    height: 56px;
+    margin: 8px 0 16px 0;
+    padding-inline-start: 10px;
+    background: inherit;
 }
+
+.compose-icon {
+    margin-inline-end: 20px;
+    height: 20px;
+}
+
+.compose {
+    background-color: #c2e7ff;
+    font-size: 0.875em;
+    font-weight: 600;
+    padding: 0 24px 0 18px;
+    height: 100%;
+    box-shadow: 0 1px 2px 0 #0000, 0 1px 3px 1px #0000;
+    line-height: 2em;
+    /* max-width: 100px; */
+    border-radius: 16px;
+}
+.folders-nav{
+    background-color: inherit;
+}
+.folders-nav>* {
+    display: flex;
+    align-items: center;
+    width: 240px;
+    padding: 0 12px 0 26px;
+    height: 32px;
+    font-size: 14px;
+    background-color: inherit;
+}
+.folders-nav>*:hover{
+ 
+    background-color:  #ebebeb;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.f-text {
+    margin-inline-start: 24px;
+}
+
+
+
