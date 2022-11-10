@@ -18,7 +18,7 @@ export default {
 		<section v-if="email" class="details-content">
 			<header class="flex space-between">
                 <!-- //todo date format -->
-				<h4>{{email.name}} <span class="small"><{{email.from}}></span></h4>
+				<h4> {{email.name}} <span class="small"> &lt;{{email.from}}&gt;</span></h4>
                 <span class="small">{{email.sentAt}}</span>
 			</header>
             <p>{{email.body}}</p>
@@ -34,10 +34,14 @@ export default {
     data() {
         return {
             email: null,
+            prvTab: ''
         }
     },
     created() {
         this.loadEmailDetails()
+        console.log(this.$route)
+        this.prvTab = this.$route.query.tab
+        console.log(this.prvTab)
     },
     methods: {
         loadEmailDetails() {
@@ -48,7 +52,7 @@ export default {
             return svgService.getMailSvg(iconName)
         },
         backToList() {
-            this.$router.push('/mail/list')
+            this.$router.back()
         },
         setTabToTrash(tab) {
             this.email.tab = tab

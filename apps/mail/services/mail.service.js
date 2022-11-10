@@ -13,7 +13,8 @@ _createEmails()
 export const emailService = {
     query,
     get,
-    put
+    put,
+    sendEmail
 }
 
 function query() {
@@ -25,6 +26,22 @@ function get(emailId) {
 
 function put(email) {
    return storageService.put(EMAILS_KEY, email)
+}
+
+function sendEmail(to,subject,body){
+const newEmail={
+    id: utilService.makeId(),
+    tab: 'sent',
+    name:loggedinUser.fullname,
+    subject,
+    body,
+    isRead:false,
+    sentAt: Date.now(),
+    from:loggedinUser.email,
+    to
+}
+return storageService.post(EMAILS_KEY,newEmail)
+
 }
 
 // Local Funcs-factory

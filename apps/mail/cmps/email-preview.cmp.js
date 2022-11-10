@@ -1,11 +1,11 @@
 import { svgService } from '../../../services/svg.service.js'
 
 export default {
-    props: ['email'],
+    props: ['email','filterTab'],
     template: `
     <router-link :to="'/mail/list/' + email.id">
 
-        <section :class="isRead" @click="setAsRead"
+        <section  @click="setAsRead"
         class="email-preview flex space-between"
         :class="isRead">
     
@@ -46,7 +46,6 @@ export default {
             return '-' + this.email.body.slice(0, 10) + '...'
         },
         isRead() {
-            console.log(this.email.isRead)
             return { isRead: this.email.isRead }
         }
     },
