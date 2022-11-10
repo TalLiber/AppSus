@@ -4,21 +4,25 @@ import { svgService } from '../../../services/svg.service.js'
 export default {
     name: 'note-add',
     template: `
-            <section class="add-note">
+            <section class="add-note flex column justify-between">
                 <img :src="imgUrl" class="note-img" />
-                <span class="add-note-title">
+                <section class="add-note-title">
                     <input v-model="note.info.title" type="text" placeholder="Title"/>
-                </span>
-                <span class="add-note-content">
+                </section>
+                <!-- <section class="focus-content"> -->
+                <section class="add-note-content">
                     <input type="text" v-model="note.info.text" placeholder="Take a note..."/>
-                </span>
-                <button @click="saveNote">Close</button>                    
+                </section>
+                <section class="action-container flex justify-between">
                 <label>
                     <span class="icon">
                         <img style="width:18px; height:18px" :src="getSvg('img')"/>
                     </span>
                     <input type="file" class="file-input btn" name="image" @change="getImgUrl" style="display: none"/>
                 </label>
+                <button class="close-btn" @click="saveNote">Close</button>                    
+            </section>
+        
             </section>
         `,
     created() {

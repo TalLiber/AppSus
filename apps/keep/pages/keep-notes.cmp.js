@@ -7,7 +7,7 @@ export default {
     name: 'keep-notes',
     props: [],
     template: `
-            <section class="notes-content">
+            <section class="notes-content flex column justify-center align-center">
                 <note-filter @filter="setFilter" />
                 <add-note @added="addNote" />
                 <section class="notes-list" v-if="notes">
