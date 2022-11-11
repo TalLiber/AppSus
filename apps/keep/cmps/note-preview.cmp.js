@@ -3,6 +3,7 @@ import { svgService } from '../../../services/svg.service.js'
 import noteActions from './note-actions.cmp.js'
 import textNote from './note-text.cmp.js'
 import todoNote from './note-todo.cmp.js'
+import mapNote from './note-map.cmp.js'
 
 export default {
     name: 'note-preview',
@@ -44,5 +45,6 @@ export default {
         textNote,
         noteActions,
         todoNote,
+        mapNote,
     },
 }

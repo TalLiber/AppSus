@@ -24,6 +24,20 @@ var gNotes = [{
         }
     },
     {
+        id: 'n200',
+        type: 'mapNote',
+        isPinned: false,
+        isTrashed: false,
+        color: '#16a085',
+        info: {
+            title: 'gtrrg',
+            info: {
+                title: 'map',
+                text: 'Fullstack Me Baby!'
+            }
+        }
+    },
+    {
         id: 'n100',
         type: 'todoNote',
         isPinned: false,
@@ -168,7 +182,6 @@ function getEmptyNote() {
         imgUrl: '',
         info: {
             title: '',
-            text: ''
         }
     }
 }

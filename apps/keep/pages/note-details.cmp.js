@@ -4,6 +4,8 @@ import { showSuccessMsg } from "../../../services/event-bus.service.js"
 
 import noteActions from '../cmps/note-actions.cmp.js'
 import textNote from '../cmps/note-text.cmp.js'
+import todoNote from '../cmps/note-todo.cmp.js'
+import mapNote from '../cmps/note-map.cmp.js'
 
 export default {
     name: 'note-details',
@@ -57,5 +59,7 @@ export default {
     components: {
         noteActions,
         textNote,
+        todoNote,
+        mapNote,
     },
 }

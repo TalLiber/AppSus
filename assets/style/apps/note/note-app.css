@@ -32,6 +32,7 @@ button {
     border-radius: 8px;
     margin-block: 16px;
     color: #202124;
+    margin-block-end: 16px;
     /* display: grid;
     grid-template-rows: 40px auto 40px;
     grid-template-columns: 1fr; */
@@ -40,6 +41,7 @@ button {
 .note-preview:not(:first-of-type) {
     break-inside: avoid-column;
     height: fit-content;
+    margin: 1rem 0;
 }
 
 .note-preview:first-of-type {

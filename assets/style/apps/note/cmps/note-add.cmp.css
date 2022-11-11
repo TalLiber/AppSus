@@ -19,7 +19,7 @@
 
 .add-note-title {
     min-height: 43px;
-    display: none;
+    /* display: none; */
 }
 
 .add-note-title input {
@@ -45,12 +45,26 @@
     width: 100%;
 }
 
-.action-container {
-    position: relative;
-    display: none;
-}
 
-.add-note:focus-within .add-note-title,
-.add-note:focus-within .action-container {
-    display: block;
-}
+/* .action-container { */
+
+
+/* position: relative; */
+
+
+/* display: none; */
+
+
+/* } */
+
+
+/* .add-note:focus-within .add-note-title, */
+
+
+/* .add-note:focus-within .action-container { */
+
+
+/* display: block; */
+
+
+/* } */
