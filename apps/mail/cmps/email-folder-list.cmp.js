@@ -16,20 +16,20 @@ export default {
     <div ref="folder" class="folders-nav">
 
         <div @click="setTab('inbox')" >
-        <img  style="width:24px; height:24px" :src="getMailSvg('inbox')" alt="" />
+        <img  style="width:20px; height:20px" :src="getMailSvg('inbox')" alt="" />
         <span class="f-text">inbox</span>
         </div>
 
         <div @click="setTab('star')">
-        <img style="width:24px; height:24px" :src="getMailSvg('star')" alt="" />
+        <img style="width:20px; height:20px" :src="getMailSvg('star')" alt="" />
         <span class="f-text"> starred</span>
         </div>
-        <div>
-        <img style="width:24px; height:24px" :src="getMailSvg('important')" alt="" />
+        <div @click="setTab('important')"> 
+        <img style="width:20px; height:20px" :src="getMailSvg('important')" alt="" />
         <span class="f-text">important</span>
         </div>
         <div @click="setTab('sent')">
-        <img style="width:24px; height:24px" :src="getMailSvg('sent')" alt="" />
+        <img style="width:20px; height:20px" :src="getMailSvg('sent')" alt="" />
         <span class="f-text">sent</span>
         </div>
 

@@ -4,9 +4,7 @@ position: fixed;
 bottom: 0;
 right: 50px;
 background-color: white;
-/* width: 63%; */
 width: 450px;
-/* padding: 10px 16px; */
 height: 420px;
 border-top-left-radius: 10px;
 border-top-right-radius: 10px;
@@ -41,6 +39,7 @@ box-shadow:0px 0px 14px 0px rgba(211, 211, 211, 0.99);
 .main-content textarea{
 resize: none;
 }
+
 
 .send-btn{
     align-self: flex-start;

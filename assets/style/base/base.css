@@ -37,7 +37,14 @@ a {
   color: unset;
 }
 
-
+textarea:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: none;
+}
+select{
+    cursor: pointer;
+}
 
 /* Dont stretch my Media */
 img,

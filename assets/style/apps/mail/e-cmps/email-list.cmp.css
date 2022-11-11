@@ -1,4 +1,23 @@
 
 .email-list{
-    background-color: lightskyblue;
+    background-color: inherit;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 }
+
+.email-list .actions-bar{
+height: 40px;
+padding-inline-start: 10px;
+
+}
+
+.email-list ul{
+    border:.3px solid rgb(128,128,128,8%)
+}
+
+.email-list .actions-bar>*{
+    margin-inline-end: 30px;
+    cursor: pointer;
+}
+
+

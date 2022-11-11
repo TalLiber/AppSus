@@ -2,22 +2,42 @@
 .email-filter{
     background-color: inherit;
     margin-bottom: 4px;
-    padding: 2px 10px;
+    padding: 2px 0;
+    position: relative;
+}
+.email-filter .main-wrapper{
+    background-color: #eaf1fb;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    max-width: 720px;
+    padding: 0 3px;
+    
 }
 .email-filter input{
     background-color: #eaf1fb;
     border: 1px solid transparent;
     border-radius: 8px;
-    max-width: 720px;
-
 }
 
 .email-filter select{
     border:1px solid #dfe9f7;
     border-radius: 8px;
+    height: 40px;
+    width: 70px;
+    padding: 3px 5px;
 }
 
-.select-wrapper>*:not(:last-child){
-margin-inline-start: 40px;
-margin-inline-end: .5em;
+.select-wrapper{
+    margin-top: 15px;
+    position: absolute;
+    /* visibility: hidden; */
+    padding: 5px 14px;
+    padding-inline-end: 60%;
+    top: 30px;
+    width: 100%;
+    background-color: white;
+    height: 180px;
+    box-shadow:0px 0px 14px 0px rgba(211, 211, 211, 0.99);
+    border-radius: 2px;
 }
+
