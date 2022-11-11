@@ -1,5 +1,7 @@
 
 import { svgService } from '../../../services/svg.service.js'
+import { eventBus } from "../../../services/event-bus.service.js"
+import { emailService } from '../services/mail.service.js'
 
 export default {
     props: [],
@@ -17,27 +19,35 @@ export default {
 
         <div @click="setTab('inbox')" >
         <img  style="width:20px; height:20px" :src="getMailSvg('inbox')" alt="" />
-        <span class="f-text">inbox</span>
+        <span class="f-text">Inbox</span>
         </div>
 
         <div @click="setTab('star')">
         <img style="width:20px; height:20px" :src="getMailSvg('star')" alt="" />
-        <span class="f-text"> starred</span>
+        <span class="f-text"> Starred</span>
         </div>
         <div @click="setTab('important')"> 
         <img style="width:20px; height:20px" :src="getMailSvg('important')" alt="" />
-        <span class="f-text">important</span>
+        <span class="f-text">Important</span>
         </div>
         <div @click="setTab('sent')">
         <img style="width:20px; height:20px" :src="getMailSvg('sent')" alt="" />
-        <span class="f-text">sent</span>
+        <span class="f-text">Sent</span>
         </div>
 
         <div @click="setTab('trash')">
         <div v-html="getMailSvg('trash')"></div>
 
-        <span class="f-text">trash</span>
+        <span class="f-text">Trash</span>
         </div>
+
+        <div @click="setTab('draft')">
+        <img style="width:20px; height:20px" :src="getMailSvg('draft')" alt="" />
+
+        <span class="f-text">Drafts</span>
+        </div>
+
+
 
      </div>
 
@@ -48,9 +58,6 @@ export default {
         return {
         }
     },
-    // mounted(){
-    //    console.dir(this.$refs.folder.children) 
-    // },
     methods: {
         setTab(tab) {
             this.$router.push({ path: '/mail/list', query: { tab: `${tab}` } })
@@ -61,6 +68,8 @@ export default {
                 path: '/mail/list',
                 query: { tab, compose: 'new' }
             })
+            emailService.createDraftEmail()
+                .then(email => eventBus.emit('setCurrDraft', email))
         },
         getMailSvg(iconName) {
             return svgService.getMailSvg(iconName)
@@ -71,5 +80,3 @@ export default {
     components: {
     }
 }
-
-//ssl.gstatic.com/ui/v1/icons/mail/rfr/create_gm_24_1x.png

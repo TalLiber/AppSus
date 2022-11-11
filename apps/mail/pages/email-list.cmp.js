@@ -39,7 +39,9 @@ export default {
             selectedEmail: {
                 checked: false,
                 email: {}
-            }
+            },
+            composeInterval: '',
+            currDraft: null
         }
     },
 
@@ -48,6 +50,9 @@ export default {
         this.getEmailsByTab()
         eventBus.on('filter-by', this.setFilterByProp)
         eventBus.on('sort-by', this.setSortByProp)
+        // draftemail handlers
+        eventBus.on('setCurrDraft', this.setCurrDraft)
+        eventBus.on('updateCurrDraft', this.updateCurrDraft)
     },
 
     methods: {
@@ -106,11 +111,29 @@ export default {
         getMailSvg(iconName) {
             return svgService.getMailSvg(iconName)
         },
+        updateComposePropsToService() {
+            emailService.put(this.currDraft)
+            .then(()=>this.getEmailsByTab())
+        },
+        setCurrDraft(email) {
+            this.currDraft = email
+        },
+        updateCurrDraft(emailProps) {
+            this.currDraft.subject = emailProps.subject
+            this.currDraft.body = emailProps.body
+            // console.log(emailProps)
+        }
     },
     computed: {
         isCompose() {
-            if (this.$route.query.compose) return true
-            return false
+            if (this.$route.query.compose) {
+                this.composeInterval = setInterval(this.updateComposePropsToService, 5000)
+                return true
+            }
+            else {
+                clearInterval(this.composeInterval)
+                return false
+            }
         },
         emailsToShow() {
             const { name, readStat } = this.filterBy

@@ -1,7 +1,10 @@
 
 import { storageService } from '../../../services/async-storage.service.js'
 import { utilService } from '../../../services/util.service.js'
+// import { eventBus } from "../../../services/event-bus.service.js"
+
 const EMAILS_KEY = 'emailDB'
+
 
 const loggedinUser = {
     email: 'user@appsus.com',
@@ -16,6 +19,7 @@ export const emailService = {
     put,
     sendEmail,
     removeEmail,
+    createDraftEmail
 }
 
 
@@ -27,28 +31,43 @@ function get(emailId) {
 }
 
 function put(email) {
-   return storageService.put(EMAILS_KEY, email)
+    return storageService.put(EMAILS_KEY, email)
 }
-function removeEmail(emailId){
-   return storageService.remove(EMAILS_KEY,emailId)
-    
-}
-
-function sendEmail(to,subject,body){
-const newEmail={
-    id: utilService.makeId(),
-    tab: 'sent',
-    name:loggedinUser.fullname,
-    subject,
-    body,
-    isRead:false,
-    sentAt: Date.now(),
-    from:loggedinUser.email,
-    to
-}
-return storageService.post(EMAILS_KEY,newEmail)
+function removeEmail(emailId) {
+    return storageService.remove(EMAILS_KEY, emailId)
 
 }
+
+function sendEmail(to, subject, body) {
+    const newEmail = {
+        id: utilService.makeId(),
+        tab: 'sent',
+        name: loggedinUser.fullname,
+        subject,
+        body,
+        isRead: false,
+        sentAt: Date.now(),
+        from: loggedinUser.email,
+        to
+    }
+    return storageService.post(EMAILS_KEY, newEmail)
+}
+
+function createDraftEmail() {
+    const draftEmail = {
+        id: utilService.makeId(),
+        tab: 'draft',
+        name: 'Draft',
+        subject: '',
+        body: '',
+        isRead: true,
+        sentAt: Date.now(),
+        to: ''
+    }
+    return storageService.post(EMAILS_KEY, draftEmail)
+}
+
+
 
 // Local Funcs-factory
 function _createEmails() {
