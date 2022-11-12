@@ -2,7 +2,7 @@ export default {
     template: `
         <header class="app-header">
         <router-link to="/">
-            <h1>App Place</h1>
+            <h1>AppSus</h1>
             <!-- <h1>AppSus</h1> -->
             </router-link> 
             <!-- <nav> -->
