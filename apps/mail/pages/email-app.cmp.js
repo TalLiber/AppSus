@@ -13,11 +13,11 @@ export default {
     name: 'email-app',
     props: [],
     template: `
+
     <section class="email-app flex full-height">
         <email-folder-list></email-folder-list>
         <div class="main-content">
             <email-filter></email-filter>
-
         <!-- list,details -->
             <router-view>
                  </router-view>
@@ -25,11 +25,12 @@ export default {
 
     </section>
         `,
-    components: {},
-    created() { },
     data() {
-        return {}
+        return {
+           
+        }
     },
+   
     methods: {},
     computed: {},
     components: {

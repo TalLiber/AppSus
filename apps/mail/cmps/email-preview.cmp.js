@@ -46,7 +46,6 @@ export default {
             this.$emit('toggleTab', this.email)
         },
         toggleSelect() {
-            console.log(this.$refs.checkbox)
             const checked = this.$refs.checkbox.checked
             this.$emit('toggleActionBar', { checked, email: this.email })
         }

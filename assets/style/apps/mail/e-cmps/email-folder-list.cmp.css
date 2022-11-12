@@ -1,5 +1,4 @@
 .email-folder-list {
-    /* background-color: antiquewhite; */
     background-color: #f6f8fc;
     width: 400px;
 }
@@ -31,12 +30,9 @@
     height: 100%;
     box-shadow: 0 1px 2px 0 #0000, 0 1px 3px 1px #0000;
     line-height: 2em;
-    /* max-width: 100px; */
     border-radius: 16px;
 }
 .compose:hover{
-  
-  
     box-shadow: -1px 1px 7px 3px rgb(209 209 209);
 }
 .folders-nav{
@@ -61,6 +57,17 @@
 .f-text {
     margin-inline-start: 24px;
 }
+
+.labels{
+    margin-top: 45px;
+    padding-inline-start: 29px;
+}
+
+.labels header{
+    width: 100%;
+}
+
+
 
 
 
