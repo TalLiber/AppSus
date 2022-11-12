@@ -90,3 +90,4 @@ export const svgService = { getSvg, getMailSvg }
 // function getSvg(iconName) {
 //     return svgService.getSvg(iconName)
 //   }
+

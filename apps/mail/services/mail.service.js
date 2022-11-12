@@ -39,26 +39,26 @@ function put(email) {
 function removeEmail(emailId) {
     return storageService.remove(EMAILS_KEY, emailId)
 }
-function post(key,newEntity){
-   return storageService.query(key)
-    .then((entities)=>{
-        entities.push(newEntity)
-        utilService.saveToStorage(key,entities)
-    })
+function post(key, newEntity) {
+    return storageService.query(key)
+        .then((entities) => {
+            entities.push(newEntity)
+            utilService.saveToStorage(key, entities)
+        })
 }
 
-function sendEmail(to, subject, body) {
+function sendEmail(to = '', subject, body) {
     const newEmail = {
         id: utilService.makeId(),
         tab: 'sent',
-        name: loggedinUser.fullname,
+        name: 'To: ',
         subject,
         body,
         isRead: false,
         sentAt: Date.now(),
         from: loggedinUser.email,
         to,
-        labels:[]
+        labels: []
     }
     return storageService.post(EMAILS_KEY, newEmail)
 }
@@ -72,7 +72,8 @@ function createDraftEmail() {
         body: '',
         isRead: true,
         sentAt: Date.now(),
-        to: ''
+        to: '',
+        labels: []
     }
     return storageService.post(EMAILS_KEY, draftEmail)
 }
@@ -119,7 +120,7 @@ function _createEmail() {
         sentAt: Date.now(),
         from: `${name}@gmail.com`,
         to: `${loggedinUser.email}`,
-        labels:[]
+        labels: []
     }
 
     return email

@@ -9,13 +9,13 @@ export default {
     template: `
    	<section class="email-folder-list flex column">
 		<!-- //todo-svg for all divs\ -->
-		<div class="compose-wrapper flex">
+		<div class="compose-wrapper flex ">
 			<div class="compose flex align-center center" @click="composeEmail()">
 				<div class="compose-icon" v-html="getMailSvg('pencil')"></div>
-				Compose
+				<span class="com-text">Compose</span> 
 			</div>
-
 		</div>
+
 		<section class="folders-nav">
 
 			<div @click="setTab('inbox')">
@@ -48,17 +48,16 @@ export default {
 				<span class="f-text">Drafts</span>
 			</div>
 
-			<div class="labels">
+			<div @click="isAddLabel=true" class="labels">
 				<header class="label-header flex space-between align-center">
 					<h4>Labels</h4>
-					<img @click.stop="isAddLabel=true" style="width:20px; height:20px" :src="getMailSvg('addLabel')" alt="" />
-					<!-- <button>+</button> -->
+					<img  style="width:20px; height:20px" :src="getMailSvg('addLabel')" alt="" />
 				</header>
 			</div>
 
             <div @click="navToLabel(label)" v-if="labels" v-for="label in labels" :key="label">
             <img style="width:20px; height:20px" :src="getMailSvg('folderLabel')" />
-            <span>{{label}}</span>
+            <span class="f-text">{{label}}</span>
             </div>
 
             <add-label v-if="isAddLabel"></add-label>
@@ -82,7 +81,11 @@ export default {
     },
     methods: {
         setTab(tab) {
-            this.$router.push({ path: '/mail/list', query: { tab: `${tab}` } })
+            if(!this.$route.query.compose){
+                this.$router.push({ path: '/mail/list', query: { tab: `${tab}` } })
+            }else{
+                this.$router.push({ path: '/mail/list', query: { tab: `${tab}`,compose:'new'} })
+            }
             eventBus.emit('zeroingLabelFilter')
         },
       

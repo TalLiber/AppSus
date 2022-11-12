@@ -10,7 +10,7 @@ export default {
         <header class="flex space-between align-center">
             <h4>New Message</h4>
             <div>
-                <button @click="this.$router.back()">
+                <button @click="backTolist">
                 <img style="width:18px; height:18px" :src="getMailSvg('button1')" alt="" />
                 </button>
             </div>
@@ -19,10 +19,10 @@ export default {
             <form class="flex column grow" @submit.prevent="sendEmail" >
                 <input placeholder="To" type="text" v-model="emailProps.to" />
                 <input placeholder="Subject" type="text" v-model="emailProps.subject" />
-                <!-- //todo try and figure out more about the delta obj -->
-                <!-- <div id="q-container" class="grow"  @input="quillData"></div> -->
-
-                <textarea name="" class="grow" v-model="emailProps.body"  ></textarea>
+              
+                <div ref="quill" id="quill-container" class="grow"  @input="quillData"></div>
+                <!-- <textarea  id="quill-container" name="" class="grow" v-model="emailProps.body"  >
+                </textarea> -->
                 <button class="send-btn">Send</button>
             </form>
             </section>
@@ -35,25 +35,37 @@ export default {
                 subject: '',
                 body: ''
             },
+
         }
     },
-    created(){
-        eventBus.on('composeEmailWithNoteData',this.composeEmailWithNoteData)
-    },
-    watch: {
-        emailProps: {
-            handler() {
-                eventBus.emit('updateCurrDraft', this.emailProps)
+    mounted() {
+        new Quill('#quill-container', {
+            modules: {
+                toolbar: [
+                    [{ header: [1, 2, false] }],
+                    ['bold', 'italic', 'underline'],
+                    ['image', 'code-block']
+                ]
             },
-            deep: true
-        }
+            theme: 'snow'  // or 'bubble'
+        });
+    },
+    created() {
+        eventBus.on('composeEmailWithNoteData', this.composeEmailWithNoteData)
     },
     methods: {
+        quillData() {
+            const quillCont = this.$refs.quill
+            this.emailProps.body = quillCont.innerText
+        },
         //todo-handle that info from note
-        composeEmailWithNoteData(note){
+        composeEmailWithNoteData(note) {
             emailService.createDraftEmail()
-                .then(email => eventBus.emit('setCurrDraft', email))
-            console.log(note)
+                .then(email => {
+                    eventBus.emit('setCurrDraft', email)
+                    this.emailProps.subject = note.info.title
+                    this.$refs.quill.innerText = note.info.text
+                })
         },
         sendEmail() {
             const { emailProps: { to, subject, body } } = this
@@ -62,11 +74,22 @@ export default {
                     this.$router.back()
                 })
         },
+        backTolist() {
+            const tab = this.$route.query.tab
+            const path = this.$route.path
+            this.$router.push({ path, query: { tab } })
+        },
         getMailSvg(iconName) {
             return svgService.getMailSvg(iconName)
         },
     },
-    computed: {
+    watch: {
+        emailProps: {
+            handler() {
+                eventBus.emit('updateCurrDraft', this.emailProps)
+            },
+            deep: true
+        }
     },
     components: {
 

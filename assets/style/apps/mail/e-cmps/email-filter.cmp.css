@@ -1,16 +1,21 @@
 
 .email-filter{
     background-color: inherit;
-    margin-bottom: 4px;
-    padding: 2px 0;
+    margin-bottom: 8px;
+    /* padding: 2px 0; */
     position: relative;
+    background-color: #eaf1fb;
+    /* border-radius: 10px; */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 .email-filter .main-wrapper{
-    background-color: #eaf1fb;
     border: 1px solid transparent;
-    border-radius: 8px;
-    max-width: 720px;
-    padding: 0 3px;
+    border-radius: 16px;
+    background-color: inherit;
+    /* max-width: 720px; */
+    /* padding: 0 3px; */
+    background-color: #eaf1fb;
     
 }
 .email-filter input{
@@ -30,7 +35,6 @@
 .select-wrapper{
     margin-top: 15px;
     position: absolute;
-    /* visibility: hidden; */
     padding: 5px 14px;
     padding-inline-end: 60%;
     top: 30px;

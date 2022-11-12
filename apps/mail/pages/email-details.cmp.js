@@ -3,11 +3,11 @@ import { emailService } from '../services/mail.service.js'
 import { svgService } from '../../../services/svg.service.js'
 import { eventBus } from '../../../services/event-bus.service.js'
 
+
 export default {
     props: [],
     template: `
 	<section className="email-details full-height flex column">
-        
 		<section  class="action-bar flex align-center">
 			<img style="width:20px; height:20px" @click="backToList" :src="getMailSvg('back')" alt="" />
 			<div  @click="setTabToTrash('trash')" v-html="getMailSvg('trash')"></div>
@@ -25,7 +25,7 @@ export default {
                     
                 </div>
             </section>
-			<header class="flex space-between">
+			<header class="flex">
 				<h4> 
                     <span>{{email.name}}</span> 
                     <span class="small"> &lt;{{email.from}}&gt;</span></h4>
@@ -39,7 +39,7 @@ export default {
             <button>Replay</button>
             <button>Forward</button>
             <!-- //todo -design -->
-            <button @click="composeNoteFromEmail">Send To Note</button>
+            <button @click="composeNoteFromEmail">Send To Notes</button>
         </footer>
 
 	</section>

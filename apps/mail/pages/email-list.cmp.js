@@ -38,8 +38,12 @@ export default {
 		<ul class="clean-list">
 			<li v-for="email in emailsToShow" :key="email.id">
 				<!-- //todo consider make preview as smart cmp -->
-				<email-preview :email="email" :filterTab="filterTab" @isRead="setEmailReadStat" @toggleTab="toggleTab"
-					@toTrashFolder="setToTrashFolder" @removeEmail="removeEmail" @toggleActionBar="toggleActionBar" />
+				<email-preview :email="email" :filterTab="filterTab" 
+                @isRead="setEmailReadStat" 
+                @toggleTab="toggleTab"
+				@toTrashFolder="setToTrashFolder"
+                @removeEmail="removeEmail" 
+                @toggleActionBar="toggleActionBar" />
 			</li>
 		</ul>
 
@@ -77,7 +81,7 @@ export default {
         //label handlers CE
         eventBus.on('zeroingLabelFilter', this.setLabelFilter)
         eventBus.on('setLabelFilter', this.setLabelFilter)
-        eventBus.on('updateLabels',this.getLabels)
+        eventBus.on('updateLabels', this.getLabels)
     },
 
     methods: {
