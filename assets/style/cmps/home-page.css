@@ -1,0 +1,24 @@
+.home-page {
+    background-color: white;
+    height: 100%;
+    padding-top: 25vh;
+    
+}
+
+.gmail-wrapper img,
+.keep-wrapper img {
+    width: 300px;
+    aspect-ratio: 1/1;
+    object-fit:fill;
+}
+
+
+@media(max-width:650px){
+    .home-page{
+        padding-top: 0;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+}

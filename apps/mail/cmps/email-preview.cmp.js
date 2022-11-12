@@ -5,25 +5,23 @@ export default {
     template: `
    
         <section  @click="goToDetails"
-        class="email-preview flex space-between align-center"
+        class="email-preview flex "
         :class="isRead">
     
         <div class="flex align-center">
-            <div class="p-s-wrapper flex align-center">
+            <div class="p-s-wrapper flex  align-center">
                 <input title="select" type="checkbox" ref="checkbox"  @click.stop="toggleSelect" />
-            <!-- <div className="icon" @click.stop="setTabToTrash('trash')" v-html="getMailSvg('trash')"></div> -->
             <img v-if="!isStarred"  style="width:20px; height:20px" @click.stop="toggleTab('star')" :src="getMailSvg('starBase')" alt="" />
             <img v-if="isStarred"  style="width:20px; height:20px" @click.stop="toggleTab('star')" :src="getMailSvg('starYellow')" alt="" />
             <img v-if="!isImp"  style="width:20px; height:20px" @click.stop="toggleTab('important')"  :src="getMailSvg('impBase')" alt="" />
             <img v-if="isImp"  style="width:18px; height:18px" @click.stop="toggleTab('important')"  :src="getMailSvg('impYellow')" alt="" />
 
-
-            <h4>  {{email.name}}</h4>
+            <h4> {{nameByType}}</h4>
             </div>
         </div>
-                <h4>{{email.subject}}<span class="small">{{getShortBody}}</span> </h4>
+                <h4 class="email-subject">{{email.subject}}<span class="small">{{getShortBody}}</span> </h4>
                 
-                <h5>{{formattedDate}}</h5>
+                <h5 class="date">{{formattedDate}}</h5>
         </section>
 `,
     data() {
@@ -62,13 +60,17 @@ export default {
         isStarred() {
             return this.email.tab === 'star'
         },
-        isImp(){
-            return this.email.tab==='important'   
+        isImp() {
+            return this.email.tab === 'important'
         },
         formattedDate() {
             const month = new Date(this.email.sentAt).toLocaleString('default', { month: 'short' })
             const day = new Date(this.email.sentAt).getDate()
             return month + ' ' + day
+        },
+        nameByType() {
+            if (this.email.tab === 'sent') return this.email.name + this.email.to
+            return this.email.name
         }
     },
     components: {
