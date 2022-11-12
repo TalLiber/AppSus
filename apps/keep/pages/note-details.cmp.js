@@ -6,6 +6,7 @@ import noteActions from '../cmps/note-actions.cmp.js'
 import textNote from '../cmps/note-text.cmp.js'
 import todoNote from '../cmps/note-todo.cmp.js'
 import mapNote from '../cmps/note-map.cmp.js'
+import canvasNote from '../cmps/note-canvas.cmp.js'
 
 export default {
     name: 'note-details',
@@ -13,7 +14,7 @@ export default {
     template: `
             <section v-if="note" class="note-details" :style='{backgroundColor: note.color}'>
                 <section class="details-preview">
-                    <img :src="note.imgUrl" class="note-img" />
+                    <img v-if="isNotCanvas" :src="note.imgUrl" class="note-img" />
                     <section contenteditable="true" @input="onChangeTitle" class="note-title">{{ note.info.title }}</section>
                     <section class="note-content">
                         <component @update="update" :is="note.type" :info="note.info" :isDetails="true"></component>
@@ -36,6 +37,7 @@ export default {
     },
     methods: {
         update(prop, toUpdate) {
+            // console.log(prop, toUpdate);
             noteService.updateNote(this.id, prop, toUpdate)
             if (prop === 'isTrashed') {
                 this.$router.push(`/keep/notes?deleted=${this.id}`)
@@ -55,11 +57,16 @@ export default {
             this.update('imgUrl', url)
         }
     },
-    computed: {},
+    computed: {
+        isNotCanvas() {
+            return this.note.type !== 'canvasNote'
+        }
+    },
     components: {
         noteActions,
         textNote,
         todoNote,
         mapNote,
+        canvasNote,
     },
 }

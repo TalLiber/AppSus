@@ -3,12 +3,15 @@ export default {
     props: ['info', 'isDetails'],
     template: `
         <section ref="gmap" class="map" style="width:100%;height:400px;">{{ Map }}</section>
-        <input type="text" placeholder="search" ref="search" />
+        <!-- <input type="text" placeholder="search" ref="search" /> -->
         `,
     created() {},
     data() {
         return {
-            map: {}
+            map: {},
+            service: null,
+            infowindow: null,
+            currLocation: null
         }
     },
     methods: {
@@ -26,68 +29,73 @@ export default {
                 elMap,
                 options
             )
-            if (!this.isDetails) this.map.setOptions({ gestureHandling: "none", keyboardShortcuts: false });
-            // google.maps.event.addListener(this.map, 'click', (event) => onMapClick(gMap, event.latLng))
-            var defaultBounds = new google.maps.LatLngBounds(
-                new google.maps.LatLng(-33.8902, 151.1759),
-                new google.maps.LatLng(-33.8474, 151.2631)
-            )
+            if (!this.isDetails) this.map.setOptions({ gestureHandling: "none", keyboardShortcuts: false })
 
-            var elSearch = this.$refs.search
-                // const searchBox = new google.maps.places.SearchBox(elSearch);
-            var searchBox = new google.maps.places.SearchBox(elSearch, {
-                bounds: defaultBounds
-            })
-            this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(elSearch)
+            var request = {
+                query: this.info.text,
+                fields: ['name', 'geometry'],
+            }
 
-            let markers = []
-            searchBox.addListener("places_changed", () => {
-                const places = searchBox.getPlaces();
-                if (places.length == 0) {
-                    return;
-                }
-                markers.forEach((marker) => {
-                    marker.setMap(null);
-                })
-                markers = []
-                const bounds = new google.maps.LatLngBounds();
-                places.forEach((place) => {
-                    if (!place.geometry || !place.geometry.location) {
-                        console.log("Returned place contains no geometry");
-                        return;
-                    }
-
-                    const icon = {
-                        url: place.icon,
-                        size: new google.maps.Size(71, 71),
-                        origin: new google.maps.Point(0, 0),
-                        anchor: new google.maps.Point(17, 34),
-                        scaledSize: new google.maps.Size(25, 25),
-                    }
-
-                    markers.push(
-                        new google.maps.Marker({
-                            map: this.map,
-                            icon,
-                            title: place.name,
-                            position: place.geometry.location,
+            this.service = new google.maps.places.PlacesService(this.map)
+            const map = this.map
+            this.service.findPlaceFromQuery(request, function(results, status) {
+                    if (status === google.maps.places.PlacesServiceStatus.OK) {
+                        results.forEach(result => {
+                            var marker = new google.maps.Marker({
+                                position: {
+                                    lat: result.geometry.location.lat(),
+                                    lng: result.geometry.location.lng()
+                                },
+                            })
+                            marker.setMap(map)
                         })
-                    )
-
-                    if (place.geometry.viewport) {
-                        // Only geocodes have viewport.
-                        bounds.union(place.geometry.viewport);
-                    } else {
-                        bounds.extend(place.geometry.location);
+                        map.setCenter(results[0].geometry.location)
                     }
-                });
-                this.map.fitBounds(bounds)
-                    // bounds.union(places.geometry.viewport);
-                    // this.map.fitBounds(bounds);
-                console.log(places);
-            })
+                })
+                // console.log(this.info);
 
-            //   let markers = google.maps.Marker
+            // var defaultBounds = new google.maps.LatLngBounds(
+            //     new google.maps.LatLng(-33.8902, 151.1759),
+            //     new google.maps.LatLng(-33.8474, 151.2631)
+            // )
+
+            // var elSearch = this.$refs.search
+            // var searchBox = new google.maps.places.SearchBox(elSearch, {
+            //     bounds: defaultBounds
+            // })
+            // this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(elSearch)
+
+            // searchBox.addListener("places_changed", () => {
+            //     const places = searchBox.getPlaces();
+
+            //     if (places.length == 0) {
+            //         return
+            //     }
+            //     const bounds = new google.maps.LatLngBounds();
+            //     places.forEach((place) => {
+            //         if (!place.geometry || !place.geometry.location) {
+            //             console.log("Returned place contains no geometry");
+            //             return;
+            //         }
+
+            //         var marker = new google.maps.Marker({
+            //             position: {
+            //                 lat: place.geometry.location.lat(),
+            //                 lng: place.geometry.location.lng()
+            //             },
+            //         })
+            //         marker.setMap(this.map)
+
+            //         if (place.geometry.viewport) {
+            //             // Only geocodes have viewport.
+            //             bounds.union(place.geometry.viewport);
+            //         } else {
+            //             bounds.extend(place.geometry.location);
+            //         }
+            //     })
+            //     this.map.fitBounds(bounds)
+            // })
+
         }
     },
     computed: {},

@@ -1,11 +1,15 @@
 import { noteService } from '../services/note.service.js'
 import { svgService } from '../../../services/svg.service.js'
+import { eventBus } from '../../../services/event-bus.service.js'
+
+import canvasNote from './note-canvas.cmp.js'
 
 export default {
     name: 'note-add',
     template: `
             <section class="add-note flex column justify-between">
                 <img :src="imgUrl" class="note-img" />
+                <component @update="update" :is="note.type" :info="note.info" :isDetails="true"></component>
                 <section class="add-note-title">
                     <input v-model="note.info.title" type="text" placeholder="Title"/>
                 </section>
@@ -14,16 +18,16 @@ export default {
                     <input type="text" v-model="content" :placeholder="placeholderText"/>
                 </section>
                 <section class="action-container flex">
-                    <div @click="checkListNote" class="icon">
-                        <img style="width:18px; height:18px" :src="getSvg('checkBox')"/>
-                    </div>
+                    <div class="icon" @click="textNote" v-html="getSvg('text1')"></div>
+                    <div class="icon" @click="checkListNote" v-html="getSvg('checkBox')"></div>
                     <label>
-                        <span class="icon">
-                            <img style="width:18px; height:18px" :src="getSvg('img')"/>
-                        </span>
+                        <div class="icon" v-html="getSvg('img')"></div>
                         <input type="file" class="file-input btn" name="image" @change="getImgUrl" style="display: none"/>
                     </label>
-                    <div className="icon" @click="mapNote" v-html="getSvg('tag')"></div>
+                    <div class="icon" @click="canvasNote" v-html="getSvg('pencil2')"></div>
+                    <span class="icon">
+                    <div @click="mapNote" v-html="getSvg('location')"></div>
+                    </span>
                     <span>
                         <button class="close-btn" @click="saveNote">Close</button>                    
                     </span>
@@ -32,11 +36,12 @@ export default {
         `,
     created() {
         this.note = noteService.getEmptyNote()
+        this.textNote()
     },
     data() {
         return {
             note: null,
-            contentPlaceholder: 'Take a note...',
+            contentPlaceholder: '',
             content: ''
         }
     },
@@ -53,7 +58,7 @@ export default {
                     this.$emit('added', note)
                     this.note = noteService.getEmptyNote()
                     this.content = ''
-                    this.contentPlaceholder = 'Take a note...'
+                    this.textNote()
                 })
         },
         async getImgUrl(ev) {
@@ -77,6 +82,16 @@ export default {
         mapNote() {
             this.contentPlaceholder = 'Enter loaction...'
             this.note.type = 'mapNote'
+        },
+        textNote() {
+            this.note.type = 'textNote'
+            this.contentPlaceholder = 'Take a note...'
+        },
+        canvasNote() {
+            this.note.type = 'canvasNote'
+        },
+        update(prop, toUpdate) {
+            this.note.info.canvasUrl = toUpdate
         }
     },
     computed: {
@@ -87,5 +102,7 @@ export default {
             return this.contentPlaceholder
         }
     },
-    components: {},
+    components: {
+        canvasNote,
+    },
 }

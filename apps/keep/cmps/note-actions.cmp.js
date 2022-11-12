@@ -1,27 +1,29 @@
 import { svgService } from '../../../services/svg.service.js'
+
 import colorPicker from './color-picker.cmp.js'
 
 export default {
     name: 'note-actions',
     props: ['note'],
     template: `
-    <section class="item">
+    <section @click.stop.prevent class="item">
             <section class="note-actions flex">
                 <div class="icon">
-                    <img @click.prevent="trash" style="width:18px; height:18px" :src="getSvg('deleteForever')"/>
+                    <img @click="trash" style="width:18px; height:18px" :src="getSvg('deleteForever')"/>
                 </div>
                 <div class="icon">
-                    <img @click.stop.prevent="colorPicker" style="width:18px; height:18px" :src="getSvg('colorPallet')"/>
+                    <img @click="colorPicker" style="width:18px; height:18px" :src="getSvg('colorPallet')"/>
                 </div>
                 <label>
                     <span class="icon">
-                        <img @click.stop style="width:18px; height:18px" :src="getSvg('img')"/>
+                        <div class="icon" v-html="getSvg('img')"></div>
                     </span>
-                    <input @click.stop type="file" class="file-input btn" name="image" @change="updateImgUrl" style="display: none"/>
+                    <input type="file" class="file-input btn" name="image" @change="updateImgUrl" style="display: none"/>
                 </label>
+                <div class="icon" @click="sendMail" v-html="getSvg('mail')"></div>
             </section>
             <color-picker v-if="isColorHidden" @updateColor="updateColor"/>
-            </section>
+    </section>
         `,
     created() {},
     data() {
@@ -45,6 +47,9 @@ export default {
         colorPicker() {
             this.isColorHidden = !this.isColorHidden
             console.log(this.isColorHidden);
+        },
+        sendMail() {
+            this.$emit('sendMail')
         }
     },
     computed: {

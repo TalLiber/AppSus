@@ -24,8 +24,8 @@ var gNotes = [{
         }
     },
     {
-        id: 'n200',
-        type: 'mapNote',
+        id: 'n201',
+        type: 'canvasNote',
         isPinned: false,
         isTrashed: false,
         color: '#16a085',
@@ -33,10 +33,24 @@ var gNotes = [{
             title: 'gtrrg',
             info: {
                 title: 'map',
-                text: 'Fullstack Me Baby!'
+                canvasUrl: ''
             }
         }
     },
+    // {
+    //     id: 'n200',
+    //     type: 'mapNote',
+    //     isPinned: false,
+    //     isTrashed: false,
+    //     color: '#16a085',
+    //     info: {
+    //         title: 'gtrrg',
+    //         info: {
+    //             title: 'map',
+    //             text: 'tel aviv'
+    //         }
+    //     }
+    // },
     {
         id: 'n100',
         type: 'todoNote',
@@ -154,6 +168,9 @@ function updateNote(noteId, prop, toUpdate) {
                     break
                 case 'imgUrl':
                     note.imgUrl = toUpdate
+                    break
+                case 'canvasUrl':
+                    note.info.canvasUrl = toUpdate
             }
             save(note)
             return (note)
