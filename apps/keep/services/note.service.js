@@ -18,7 +18,7 @@ var gNotes = [{
         isPinned: true,
         isTrashed: false,
         color: '#fdcfe8',
-        imgUrl: './assets/img/4.jpg',
+        imgUrl: 'assets/img/4.jpg',
         info: {
             title: 'reprehenderit in voluptate',
             text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.'
@@ -42,7 +42,7 @@ var gNotes = [{
         isPinned: false,
         isTrashed: false,
         color: '#e6c9a8',
-        imgUrl: './assets/img/2.jpg',
+        imgUrl: 'assets/img/2.jpg',
         info: {
             title: 'Enim nunc faucibus',
             text: 'Lorem ipsum dolor sphasellus vestibulum. Nunc consequat interdum varius sit amet mattis. A diait amet,tis.Enim nunc faucibus a pellentesque sit amet. Lobortis feugiat vivamus at augue eget. Eget m consectetur adipiscing elit,hasellus vestibulum. Nunc consequat interdum varius sit amet ma diam ut venenatis tellus in.'
@@ -77,7 +77,7 @@ var gNotes = [{
         isPinned: false,
         isTrashed: false,
         color: '#aecbfa',
-        imgUrl: './assets/img/5.jpg',
+        imgUrl: 'assets/img/5.jpg',
         info: {
             title: 'Enim nunc faucibus',
             text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lobortis feugiat vivamus at augue eget. Id '
@@ -89,7 +89,7 @@ var gNotes = [{
         isPinned: false,
         isTrashed: false,
         color: '#e8eaed',
-        imgUrl: './assets/img/3.jpg',
+        imgUrl: 'assets/img/3.jpg',
         info: {
             title: 'Enim nunc faucibus',
             text: ''
@@ -113,7 +113,7 @@ var gNotes = [{
         isPinned: false,
         isTrashed: false,
         color: '#e6c9a8',
-        imgUrl: './assets/img/7.jpg',
+        imgUrl: 'assets/img/7.jpg',
         info: {
             title: 'TODO THIS WEEK!',
             todos: [
@@ -128,7 +128,7 @@ var gNotes = [{
         isPinned: false,
         isTrashed: false,
         color: '',
-        imgUrl: './assets/img/6.jpg',
+        imgUrl: 'assets/img/6.jpg',
         info: {
             title: 'Enim nunc faucibus',
             text: 'Lorem ipsum dolor sit amet, a. Lobortis feugiat vivamus at augue eget. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc. Parturient montes nascetur ridiculus mus mauris vitae. Quis lectus nulla atLobortis feugiat vivamus at augue eget. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc. Parturient montes nascetur ridiculus mus mauris vitae. Quis lectus nulla volutpat diam ut venenatis tellus in.'
@@ -142,7 +142,7 @@ var gNotes = [{
         color: '#f28b82',
         info: {
             title: 'Canvas',
-            canvasUrl: './assets/img/canvas.png'
+            canvasUrl: 'assets/img/canvas.png'
         }
     },
     {
@@ -151,7 +151,7 @@ var gNotes = [{
         isPinned: false,
         isTrashed: false,
         color: '#fdcfe8',
-        imgUrl: './assets/img/8.jpg',
+        imgUrl: 'assets/img/8.jpg',
         info: {
             title: 'Enim nunc faucibus',
             text: 'Lorem ipsum dolor sit amet'

@@ -1,5 +1,3 @@
-
-
 export default {
     template: `
         <section class="home-page flex space-even">
@@ -19,8 +17,8 @@ export default {
     `,
     data() {
         return {
-            gmailUrl: '../assets/img/gmailLogo.png',
-            keepUrl: '../assets/img/keepLogo.png'
+            gmailUrl: 'assets/img/gmailLogo.png',
+            keepUrl: 'assets/img/keepLogo.png'
         }
     }
 }
