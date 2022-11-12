@@ -7,26 +7,31 @@ import canvasNote from './note-canvas.cmp.js'
 export default {
     name: 'note-add',
     template: `
-            <section class="add-note flex column justify-between">
+            <section class="add-note">
                 <img :src="imgUrl" class="note-img" />
                 <component @update="update" :is="note.type" :info="note.info" :isDetails="true"></component>
                 <section class="add-note-title">
-                    <input v-model="note.info.title" type="text" placeholder="Title"/>
+                    <input v-model="note.info.title" type="text" placeholder="Add title"/>
                 </section>
-                <!-- <section class="focus-content"> -->
                 <section class="add-note-content">
                     <input type="text" v-model="content" :placeholder="placeholderText"/>
                 </section>
                 <section class="action-container flex">
-                    <div class="icon" @click="textNote" v-html="getSvg('text1')"></div>
-                    <div class="icon" @click="checkListNote" v-html="getSvg('checkBox')"></div>
-                    <label>
-                        <div class="icon" v-html="getSvg('img')"></div>
+                    <span class="icon">
+                        <button @click="textNote" v-html="getSvg('text1')"></button>
+                    </span>
+                    <span class="icon">
+                        <button @click="checkListNote" v-html="getSvg('checkBox')"></button>
+                    </span>
+                    <label class="icon">
+                        <div v-html="getSvg('img')"></div>
                         <input type="file" class="file-input btn" name="image" @change="getImgUrl" style="display: none"/>
                     </label>
-                    <div class="icon" @click="canvasNote" v-html="getSvg('pencil2')"></div>
                     <span class="icon">
-                    <div @click="mapNote" v-html="getSvg('location')"></div>
+                        <button @click="canvasNote" v-html="getSvg('pencil2')"></button>
+                    </span>
+                    <span class="icon">
+                    <button @click="mapNote" v-html="getSvg('location')"></button>
                     </span>
                     <span>
                         <button class="close-btn" @click="saveNote">Close</button>                    
@@ -40,12 +45,17 @@ export default {
     },
     data() {
         return {
+            isExpand: false,
             note: null,
             contentPlaceholder: '',
             content: ''
         }
     },
     methods: {
+        setExpand() {
+            this.isExpand = !this.isExpand
+            console.log(this.isExpand);
+        },
         getSvg(iconName) {
             return svgService.getSvg(iconName)
         },
@@ -100,6 +110,9 @@ export default {
         },
         placeholderText() {
             return this.contentPlaceholder
+        },
+        getClass() {
+            return `add-note flex column justify-between ${this.isExpand&&'expand'}`
         }
     },
     components: {

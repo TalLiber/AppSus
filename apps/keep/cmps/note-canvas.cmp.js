@@ -4,7 +4,6 @@ export default {
     name: 'note-canvas',
     props: ['info', 'isDetails'],
     template: `
-    <h1>canvas</h1>
         <div v-if="isDetails" ref="canvasContainer" class="canvas-container">
             <canvas ref="canvas" class="canvas" height="450" width="300" @click="draw"></canvas>
             <!-- <button @click="save">Save</button> -->
@@ -100,9 +99,10 @@ export default {
             var image = new Image();
             image.src = this.info.canvasUrl
             this.ctx.drawImage(image, 0, 0, this.elCanvas.width, this.elCanvas.height)
+            console.log(this.ctx);
         },
         eraseCanvas() {
-            this.ctx.fillStyle = '#ffe5ec'
+            this.ctx.fillStyle = '#fdf3f6'
             this.ctx.fillRect(0, 0, this.elCanvas.width, this.elCanvas.height);
             this.save()
         },

@@ -21,8 +21,8 @@ export default {
                     </section>
                     <note-actions @sendMail="sendMail" @update="update" @updateImgUrl="updateImgUrl" :note="note"></note-actions>
                 </section>
-                <div class="icon pin-icon">
-                    <img style="width:18px; height:18px" :src="getSvg('pin')" alt="" />
+                <div @click.stop.prevent="togglePin" class="icon pin-icon">
+                    <img style="width:24px; height:24px" :src="isPinned" alt="" />
                 </div>
             </router-link>
         </section>
@@ -43,13 +43,20 @@ export default {
         },
         sendMail() {
             eventBus.emit('composeNote', this.note)
+        },
+        togglePin() {
+            this.note.isPinned = !this.note.isPinned
         }
     },
     computed: {
         getUrl() {
             if (this.note.type === 'canvasNote') return this.note.info.canvasUrl
             return this.note.imgUrl
-        }
+        },
+        isPinned() {
+            if (this.note.isPinned) return this.getSvg('bookMark')
+            return this.getSvg('bookMarkEmpty')
+        },
     },
     components: {
         textNote,

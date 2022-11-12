@@ -19,13 +19,12 @@
 
 .add-note-title {
     min-height: 43px;
-    /* display: none; */
 }
 
 .add-note-title input {
     font-family: google-sans;
     letter-spacing: .00625em;
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: 500;
     line-height: 1.5rem;
     padding-bottom: 12px;
@@ -43,28 +42,26 @@
     padding: 4px 16px 12px 16px;
     text-overflow: ellipsis;
     width: 100%;
+    background-image: url();
+}
+
+.file-input {
+    display: none;
 }
 
 
-/* .action-container { */
+/* .action-container {
+    display: none;
+}
 
+.focus-content {
+    display: none;
+}
 
-/* position: relative; */
+.add-note:focus-within .add-note-title {
+    display: block;
+}
 
-
-/* display: none; */
-
-
-/* } */
-
-
-/* .add-note:focus-within .add-note-title, */
-
-
-/* .add-note:focus-within .action-container { */
-
-
-/* display: block; */
-
-
-/* } */
+.add-note:focus-within .action-container {
+    display: inline-flex;
+} */

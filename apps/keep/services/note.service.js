@@ -13,56 +13,27 @@ export const noteService = {
 }
 
 var gNotes = [{
+        id: 'n100',
+        type: 'textNote',
+        isPinned: true,
+        isTrashed: false,
+        color: '#fdcfe8',
+        imgUrl: '/assets/img/4.jpg',
+        info: {
+            title: 'reprehenderit in voluptate',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.'
+        }
+    },
+    {
         id: 'n101',
         type: 'textNote',
         isPinned: false,
-        isTrashed: true,
-        color: '#16a085',
-        info: {
-            title: 'gtrrg',
-            text: 'Fullstack Me Baby!'
-        }
-    },
-    {
-        id: 'n201',
-        type: 'canvasNote',
-        isPinned: false,
         isTrashed: false,
-        color: '#16a085',
+        color: '#cbf0f8',
+        imgUrl: '',
         info: {
-            title: 'gtrrg',
-            info: {
-                title: 'map',
-                canvasUrl: ''
-            }
-        }
-    },
-    // {
-    //     id: 'n200',
-    //     type: 'mapNote',
-    //     isPinned: false,
-    //     isTrashed: false,
-    //     color: '#16a085',
-    //     info: {
-    //         title: 'gtrrg',
-    //         info: {
-    //             title: 'map',
-    //             text: 'tel aviv'
-    //         }
-    //     }
-    // },
-    {
-        id: 'n100',
-        type: 'todoNote',
-        isPinned: false,
-        isTrashed: false,
-        color: '#16a085',
-        info: {
-            title: 'gtrrg',
-            todos: [
-                { text: 'Driving liscence', doneAt: null },
-                { text: 'Coding power', doneAt: Date.now() },
-            ]
+            title: 'Enim nunc faucibus',
+            text: 'Morbi tristique senectus et netus et. Enim nunc faucibus a pellentesque sit amet. Lobortis feugiat vivamus at augue eget. Eget magna fermentum iaculis eu non diam phasellus vestibulum. Nunc consequat interdum varius sit amet mattis.Enim nunc faucibus a pellentesque sit amet. Lobortis feugiat vivamus at augue eget. Eget magna fermentum iaculis eu non diam phasellus vestibulum. Nunc consequat interdum varius sit amet mattis. A diam sollicitudin '
         }
     },
     {
@@ -70,10 +41,22 @@ var gNotes = [{
         type: 'textNote',
         isPinned: false,
         isTrashed: false,
-        color: '#16a085',
+        color: '',
+        imgUrl: '/assets/img/2.jpg',
         info: {
-            title: 'gtrrg',
-            text: 'Hello orem ipsum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumque et, quibusdam,'
+            title: 'Enim nunc faucibus',
+            text: 'Lorem ipsum dolor sphasellus vestibulum. Nunc consequat interdum varius sit amet mattis. A diait amet,tis.Enim nunc faucibus a pellentesque sit amet. Lobortis feugiat vivamus at augue eget. Eget m consectetur adipiscing elit,hasellus vestibulum. Nunc consequat interdum varius sit amet ma diam ut venenatis tellus in.'
+        }
+    },
+    {
+        id: 'n200',
+        type: 'mapNote',
+        isPinned: false,
+        isTrashed: false,
+        color: '#f28b82',
+        info: {
+            title: 'Work',
+            text: 'Ichilov hospital'
         }
     },
     {
@@ -81,10 +64,11 @@ var gNotes = [{
         type: 'textNote',
         isPinned: false,
         isTrashed: false,
-        color: '',
+        color: '#f28b82',
+        imgUrl: '',
         info: {
-            title: 'gtrrg',
-            text: 'HelloLorem ipsum dolor sit amet consectetur adipisicing elit. Vero,veritatis, tempora incidunt maxime minus recusandae quam dignissimosminima qui fu orem ipsum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumque et, quibusdam,'
+            title: 'Enim nunc faucibus',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lobortis feugiat vivamus at augue eget. Id aliquet risus feugiat in ante. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc. Parturient montes nascetur ridiculus mus mauris vitae. Quis lectus nulla at volutpat diam ut venenatis tellus in.'
         }
     },
     {
@@ -92,10 +76,11 @@ var gNotes = [{
         type: 'textNote',
         isPinned: false,
         isTrashed: false,
-        color: '',
+        color: '#aecbfa',
+        imgUrl: '/assets/img/5.jpg',
         info: {
-            title: 'gtrrg',
-            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumqueum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumque et, quibu et, quibusdam,'
+            title: 'Enim nunc faucibus',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lobortis feugiat vivamus at augue eget. Id '
         }
     },
     {
@@ -104,9 +89,36 @@ var gNotes = [{
         isPinned: false,
         isTrashed: false,
         color: '',
+        imgUrl: '/assets/img/6.jpg',
         info: {
-            title: '',
-            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumqueum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumque et, quibu et, quibusdam,'
+            title: 'Enim nunc faucibus',
+            text: 'Lorem ipsum dolor sit amet, a. Lobortis feugiat vivamus at augue eget. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc. Parturient montes nascetur ridiculus mus mauris vitae. Quis lectus nulla atLobortis feugiat vivamus at augue eget. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc. Parturient montes nascetur ridiculus mus mauris vitae. Quis lectus nulla volutpat diam ut venenatis tellus in.'
+        }
+    },
+    {
+        id: 'n107',
+        type: 'todoNote',
+        isPinned: false,
+        isTrashed: false,
+        color: '#e6c9a8',
+        imgUrl: '/assets/img/7.jpg',
+        info: {
+            title: 'TODO THIS WEEK!',
+            todos: [
+                { text: 'Driving liscence', doneAt: null },
+                { text: 'Coding power', doneAt: Date.now() },
+            ]
+        }
+    },
+    {
+        id: 'n110',
+        type: 'canvasNote',
+        isPinned: false,
+        isTrashed: false,
+        color: '#d7aefb',
+        info: {
+            title: 'Canvas',
+            canvasUrl: '/assets/img/canvas.png'
         }
     },
     {
@@ -114,23 +126,37 @@ var gNotes = [{
         type: 'textNote',
         isPinned: false,
         isTrashed: false,
-        color: '',
+        color: '#d7aefb',
+        imgUrl: '',
         info: {
-            title: '',
-            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumqueum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumque et, quibu et, quibusdam,'
+            title: 'Enim nunc faucibus',
+            text: 'Lorem ipsum dolor sit amet, a.'
         }
     },
     {
-        id: 'n107',
+        id: 'n108',
         type: 'textNote',
         isPinned: false,
         isTrashed: false,
-        color: '',
+        color: '#e8eaed',
+        imgUrl: '/assets/img/3.jpg',
         info: {
-            title: '',
-            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumqueum dolor sit amet consectetur adipisicing elit. Sequiasperiores expedita at voluptatem eligendi ipsum sit, tempora modinisi eum quae id cumque et, quibu et, quibusdam,'
+            title: 'Enim nunc faucibus',
+            text: ''
         }
     },
+    // {
+    //     id: 'n109',
+    //     type: 'textNote',
+    //     isPinned: false,
+    //     isTrashed: false,
+    //     color: '#f28b82',
+    //     imgUrl: '/assets/img/2.jpg',
+    //     info: {
+    //         title: 'Enim nunc faucibus',
+    //         text: 'Lorem ipsum dolor sit amet, a. Lobortis'
+    //     }
+    // },
 ]
 
 const STORAGE_KEY = 'notesDB'

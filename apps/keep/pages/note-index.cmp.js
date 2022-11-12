@@ -4,8 +4,10 @@ export default {
     name: 'note-index',
     props: [],
     template: `
-        <section class="main-container">
-            <side-nav></side-nav>
+        <section class="main-container flex">
+            <section class="side-nav-container">
+                <side-nav></side-nav>
+            </section>
             <section class="content-container">
                 <router-view></router-view>
             </section>

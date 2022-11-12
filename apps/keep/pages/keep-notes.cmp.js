@@ -1,4 +1,5 @@
 import { noteService } from '../services/note.service.js'
+import { svgService } from '../../../services/svg.service.js'
 
 import notePreview from '../cmps/note-preview.cmp.js'
 import noteFilter from '../cmps/note-filter.cmp.js'
@@ -9,11 +10,25 @@ export default {
     props: [],
     template: `
             <section class="notes-content flex column justify-center align-center">
-                <note-filter @filter="setFilter" />
-                <add-note @added="addNote" />
-                <section class="notes-list" v-if="notes">
-                    <note-preview @updateImgUrl="getImgUrl" @update="updateNote" v-for="(note, idx) in notesToShow" :note="note" :key="idx"/>
+                <section class="filter flex align-center">
+                    <div className="icon" v-html="getSvg('search')"></div>
+                    <note-filter @filter="setFilter" />
                 </section>
+                <add-note @added="addNote" />
+                <section class="pinned" v-if="notes">
+                    <div>PINNED</div>
+                    <section class="notes-list">
+                        <note-preview @updateImgUrl="getImgUrl" @update="updateNote" v-for="(note, idx) in pinnedToShow" :note="note" :key="idx"/>
+                    </section>
+                </section>
+
+                <section class="others" v-if="notes">
+                    <div>OTHERS</div>              
+                    <section class="notes-list">
+                        <note-preview @updateImgUrl="getImgUrl" @update="updateNote" v-for="(note, idx) in othersToShow" :note="note" :key="idx"/>
+                    </section>
+                </section>
+
                 <router-view></router-view>
             </section>
 
@@ -66,13 +81,26 @@ export default {
         async getImgUrl(noteId, ev) {
             const url = await noteService.createImg(ev)
             this.updateNote(noteId, 'imgUrl', url)
-        }
+        },
+        getSvg(iconName) {
+            return svgService.getSvg(iconName)
+        },
     },
     computed: {
-        notesToShow() {
+        // notesToShow() {
+        //     const regex = new RegExp(this.filterBy.title, 'i')
+        //     var notes = this.notes.filter(note => regex.test(note.info.title))
+        //     return notes // TODO combine all filters!!!!
+        // },
+        pinnedToShow() {
             const regex = new RegExp(this.filterBy.title, 'i')
             var notes = this.notes.filter(note => regex.test(note.info.title))
-            return notes // TODO: add isTrashed filter
+            return notes.filter(note => note.isPinned)
+        },
+        othersToShow() {
+            const regex = new RegExp(this.filterBy.title, 'i')
+            var notes = this.notes.filter(note => regex.test(note.info.title))
+            return notes.filter(note => !note.isPinned)
         }
     },
     components: {

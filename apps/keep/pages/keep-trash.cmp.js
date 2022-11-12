@@ -5,9 +5,11 @@ export default {
     name: 'keep-trash',
     props: [],
     template: `
+        <section class="notes-content flex column justify-center align-center">
             <section class="notes-list" v-if="notes">
                 <note-preview @update="updateNote" v-for="(note, idx) in notes" :note="note" :key="idx"/>
             </section>
+        </section>
 
         `,
     created() {

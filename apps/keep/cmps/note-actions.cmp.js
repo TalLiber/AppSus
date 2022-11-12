@@ -46,7 +46,6 @@ export default {
         },
         colorPicker() {
             this.isColorHidden = !this.isColorHidden
-            console.log(this.isColorHidden);
         },
         sendMail() {
             this.$emit('sendMail')

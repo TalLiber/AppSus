@@ -19,7 +19,7 @@ export default {
                     <section class="note-content">
                         <component @update="update" :is="note.type" :info="note.info" :isDetails="true"></component>
                     </section>
-                    <note-actions @updateImgUrl="getImgUrl" @update="update"></note-actions>
+                    <note-actions @sendMail="sendMail" @updateImgUrl="getImgUrl" @update="update"></note-actions>
                     <button @click="close" class="close-btn">Close</button>
                 </section>  
             </section>  
@@ -55,6 +55,9 @@ export default {
         async getImgUrl(ev) {
             const url = await noteService.createImg(ev)
             this.update('imgUrl', url)
+        },
+        sendMail() {
+            eventBus.emit('composeNote', this.note)
         }
     },
     computed: {
