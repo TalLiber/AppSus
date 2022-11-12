@@ -4,6 +4,7 @@
 @import './e-cmps/email-preview.cmp.css';
 @import './e-cmps/email-details.cmp.css';
 @import './e-cmps/email-compose.cmp.css';
+@import './e-cmps/add-label.cmp.css';
 
 .email-app {
     background-color: white;

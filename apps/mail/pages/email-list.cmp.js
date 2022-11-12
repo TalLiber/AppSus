@@ -15,7 +15,23 @@ export default {
 			<img title="change reading status" style="width:20px; height:20px" @click="toggleReadProp()"
 				:src="getMailSvg('readStat')" />
 			<img title="snooze" style="width:20px; height:20px" :src="getMailSvg('snooze')" />
-			<img title="label" style="width:20px; height:20px" :src="getMailSvg('label')" />
+
+            <section class="labels-container" >
+                <img @click="toggleLabelListVis" title="label" style="width:20px; height:20px"
+                 :src="getMailSvg('label')" />
+
+                <section v-if="isEditLabels" class="labels-list">
+                    <header>Label as:</header>
+                    <div v-for="label in labels" :key="label" class="label-item flex align-center">
+                        <input type="checkbox" :checked="isLabeled(label)" @input="toggleCurrLabel(label)" />
+                        <span>{{label}}</span>
+                    </div>
+                    <div class="label-actions flex align-center">
+                        <div class="" @click="applyChanges">Apply</div>
+
+                    </div>
+                </section>
+            </section>
             
 		</div>
 		
@@ -41,38 +57,81 @@ export default {
                 email: {}
             },
             composeInterval: '',
-            currDraft: null
+            currDraft: null,
+            labels: null,
+            isEditLabels: false,
+            isLabelFilter: ''
         }
     },
 
     created() {
         this.filterTab = this.$route.query.tab
         this.getEmailsByTab()
+        this.getLabels()
+
         eventBus.on('filter-by', this.setFilterByProp)
         eventBus.on('sort-by', this.setSortByProp)
-        // draftemail handlers
+        // draftemail handlers CE
         eventBus.on('setCurrDraft', this.setCurrDraft)
         eventBus.on('updateCurrDraft', this.updateCurrDraft)
+        //label handlers CE
+        eventBus.on('zeroingLabelFilter', this.setLabelFilter)
+        eventBus.on('setLabelFilter', this.setLabelFilter)
+        eventBus.on('updateLabels',this.getLabels)
     },
 
     methods: {
+        setLabelFilter(str = '') {
+            this.isLabelFilter = str
+            this.getEmailsByTab()
+        },
+        getLabels() {
+            emailService.query('labelsDB')
+                .then(labels => this.labels = labels)
+        },
+        toggleLabelListVis() {
+            this.isEditLabels = !this.isEditLabels
+        },
+        isLabeled(label) {
+            const { labels } = this.selectedEmail.email
+            return labels.some(l => l === label)
+        },
+        toggleCurrLabel(label) {
+            const { labels } = this.selectedEmail.email
+            const idx = labels.findIndex(l => l === label)
+            if (idx === -1) labels.push(label)
+            else labels.splice(idx, 1)
+        },
+        applyChanges() {
+            emailService.put(this.selectedEmail.email)
+            this.isEditLabels = false
+
+        },
+        //todo-change the name of func
         getEmailsByTab() {
             emailService.query()
                 .then(emails => this.emails = emails)
                 .then(() => {
-                    //inbox||starred
+                    //when nav by tab
                     let filteredEmails
-                    if (this.filterTab === 'inbox') {
-                        filteredEmails = this.emails.filter(e => (e.tab === 'inbox' || e.tab === 'star' || e.tab === 'important'))
+                    if (!this.isLabelFilter) {
+                        //inbox||starred
+                        if (this.filterTab === 'inbox') {
+                            filteredEmails = this.emails.filter(e => (e.tab === 'inbox' || e.tab === 'star' || e.tab === 'important'))
+                        }
+                        else filteredEmails = this.emails.filter(e => e.tab === this.filterTab)
                     }
-                    else filteredEmails = this.emails.filter(e => e.tab === this.filterTab)
+                    //when nav by label
+                    else {
+                        filteredEmails = this.emails.filter(e => e.labels.some(l => l === this.isLabelFilter))
+                    }
                     this.emails = filteredEmails
                     this.selectedEmail.checked = false
+
                 })
         },
         toggleActionBar(payload) {
             this.selectedEmail = payload
-
         },
         setFilterByProp(filterBy) {
             this.filterBy = filterBy
@@ -113,7 +172,7 @@ export default {
         },
         updateComposePropsToService() {
             emailService.put(this.currDraft)
-            .then(()=>this.getEmailsByTab())
+                .then(() => this.getEmailsByTab())
         },
         setCurrDraft(email) {
             this.currDraft = email

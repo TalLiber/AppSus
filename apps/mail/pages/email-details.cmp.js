@@ -8,17 +8,25 @@ export default {
 	<section className="email-details full-height flex column">
         
 		<section  class="action-bar flex align-center">
-			<!-- svgs btns -->
-			<img style="width:24px; height:24px" @click="backToList" :src="getMailSvg('back')" alt="" />
-			<div className="icon" @click="setTabToTrash('trash')" v-html="getMailSvg('trash')"></div>
-			<img style="width:24px; height:24px" @click="toggleStarTab()" :src="getMailSvg('star')" alt="" />
-			<img style="width:24px; height:24px" @click="toggleReadProp()" :src="getMailSvg('readStat')" alt="" />
+			<img style="width:20px; height:20px" @click="backToList" :src="getMailSvg('back')" alt="" />
+			<div  @click="setTabToTrash('trash')" v-html="getMailSvg('trash')"></div>
+			<img style="width:20px; height:20px" @click="toggleStarTab()" :src="getMailSvg('star')" alt="" />
+			<img style="width:20px; height:20px" @click="toggleReadProp()" :src="getMailSvg('readStat')" alt="" />
 		</section>
 
 		<section v-if="email" class="details-content">
+            <section class="labels-bar flex align-center">
+               <h2>{{email.subject}}</h2> 
+               <div  class="labels-det flex align-center">
+                   <span v-for="label in email.labels">
+                       {{label}}
+                    </span>
+                </div>
+            </section>
 			<header class="flex space-between">
-                <!-- //todo date format -->
-				<h4> {{email.name}} <span class="small"> &lt;{{email.from}}&gt;</span></h4>
+				<h4> 
+                    <span>{{email.name}}</span> 
+                    <span class="small"> &lt;{{email.from}}&gt;</span></h4>
                 <!-- //todo more detailed date format -->
                 <span class="small">{{formattedDate}}</span>
 			</header>
