@@ -41,7 +41,7 @@ var gNotes = [{
         type: 'textNote',
         isPinned: false,
         isTrashed: false,
-        color: '',
+        color: '#e6c9a8',
         imgUrl: '/assets/img/2.jpg',
         info: {
             title: 'Enim nunc faucibus',
@@ -53,7 +53,7 @@ var gNotes = [{
         type: 'mapNote',
         isPinned: false,
         isTrashed: false,
-        color: '#f28b82',
+        color: '#fdcfe8',
         info: {
             title: 'Work',
             text: 'Ichilov hospital'
@@ -84,15 +84,27 @@ var gNotes = [{
         }
     },
     {
-        id: 'n105',
+        id: 'n108',
         type: 'textNote',
         isPinned: false,
         isTrashed: false,
-        color: '',
-        imgUrl: '/assets/img/6.jpg',
+        color: '#e8eaed',
+        imgUrl: '/assets/img/3.jpg',
         info: {
             title: 'Enim nunc faucibus',
-            text: 'Lorem ipsum dolor sit amet, a. Lobortis feugiat vivamus at augue eget. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc. Parturient montes nascetur ridiculus mus mauris vitae. Quis lectus nulla atLobortis feugiat vivamus at augue eget. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc. Parturient montes nascetur ridiculus mus mauris vitae. Quis lectus nulla volutpat diam ut venenatis tellus in.'
+            text: ''
+        }
+    },
+    {
+        id: 'n106',
+        type: 'textNote',
+        isPinned: false,
+        isTrashed: false,
+        color: '#d7aefb',
+        imgUrl: '',
+        info: {
+            title: 'Enim nunc faucibus',
+            text: 'Lorem ipsum dolor sit amet, a.'
         }
     },
     {
@@ -111,52 +123,41 @@ var gNotes = [{
         }
     },
     {
+        id: 'n105',
+        type: 'textNote',
+        isPinned: false,
+        isTrashed: false,
+        color: '',
+        imgUrl: '/assets/img/6.jpg',
+        info: {
+            title: 'Enim nunc faucibus',
+            text: 'Lorem ipsum dolor sit amet, a. Lobortis feugiat vivamus at augue eget. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc. Parturient montes nascetur ridiculus mus mauris vitae. Quis lectus nulla atLobortis feugiat vivamus at augue eget. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc. Parturient montes nascetur ridiculus mus mauris vitae. Quis lectus nulla volutpat diam ut venenatis tellus in.'
+        }
+    },
+    {
         id: 'n110',
         type: 'canvasNote',
         isPinned: false,
         isTrashed: false,
-        color: '#d7aefb',
+        color: '#f28b82',
         info: {
             title: 'Canvas',
             canvasUrl: '/assets/img/canvas.png'
         }
     },
     {
-        id: 'n106',
+        id: 'n105',
         type: 'textNote',
         isPinned: false,
         isTrashed: false,
-        color: '#d7aefb',
-        imgUrl: '',
+        color: '#fdcfe8',
+        imgUrl: '/assets/img/8.jpg',
         info: {
             title: 'Enim nunc faucibus',
-            text: 'Lorem ipsum dolor sit amet, a.'
+            text: 'Lorem ipsum dolor sit amet'
         }
     },
-    {
-        id: 'n108',
-        type: 'textNote',
-        isPinned: false,
-        isTrashed: false,
-        color: '#e8eaed',
-        imgUrl: '/assets/img/3.jpg',
-        info: {
-            title: 'Enim nunc faucibus',
-            text: ''
-        }
-    },
-    // {
-    //     id: 'n109',
-    //     type: 'textNote',
-    //     isPinned: false,
-    //     isTrashed: false,
-    //     color: '#f28b82',
-    //     imgUrl: '/assets/img/2.jpg',
-    //     info: {
-    //         title: 'Enim nunc faucibus',
-    //         text: 'Lorem ipsum dolor sit amet, a. Lobortis'
-    //     }
-    // },
+
 ]
 
 const STORAGE_KEY = 'notesDB'
@@ -197,6 +198,7 @@ function updateNote(noteId, prop, toUpdate) {
                     break
                 case 'canvasUrl':
                     note.info.canvasUrl = toUpdate
+                    break
             }
             save(note)
             return (note)

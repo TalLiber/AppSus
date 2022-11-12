@@ -6,15 +6,16 @@ import canvasNote from './note-canvas.cmp.js'
 
 export default {
     name: 'note-add',
+    props: [],
     template: `
             <section class="add-note">
                 <img :src="imgUrl" class="note-img" />
                 <component @update="update" :is="note.type" :info="note.info" :isDetails="true"></component>
                 <section class="add-note-title">
-                    <input v-model="note.info.title" type="text" placeholder="Add title"/>
+                    <input ref="title" v-model="note.info.title" type="text" placeholder="Add title"/>
                 </section>
                 <section class="add-note-content">
-                    <input type="text" v-model="content" :placeholder="placeholderText"/>
+                    <input ref="textContent" type="text" v-model="content" :placeholder="placeholderText"/>
                 </section>
                 <section class="action-container flex">
                     <span class="icon">
@@ -42,11 +43,12 @@ export default {
     created() {
         this.note = noteService.getEmptyNote()
         this.textNote()
+        eventBus.on('composeNoteWithEmailData', this.composeNoteFromMail)
     },
     data() {
         return {
             isExpand: false,
-            note: null,
+            note: {},
             contentPlaceholder: '',
             content: ''
         }
@@ -102,6 +104,14 @@ export default {
         },
         update(prop, toUpdate) {
             this.note.info.canvasUrl = toUpdate
+        },
+        composeNoteFromMail(mail) {
+            this.note.type = 'textNote'
+            this.note.info.title = mail.subject
+            this.note.info.text = mail.body
+            console.log(this.$refs.textContent);
+            this.$refs.title.value = mail.subject
+                // this.$refs.noteContent.value = mail.body
         }
     },
     computed: {

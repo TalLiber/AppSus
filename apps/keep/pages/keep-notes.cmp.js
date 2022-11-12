@@ -1,5 +1,6 @@
 import { noteService } from '../services/note.service.js'
 import { svgService } from '../../../services/svg.service.js'
+import { eventBus } from '../../../services/event-bus.service.js'
 
 import notePreview from '../cmps/note-preview.cmp.js'
 import noteFilter from '../cmps/note-filter.cmp.js'
@@ -14,7 +15,7 @@ export default {
                     <div className="icon" v-html="getSvg('search')"></div>
                     <note-filter @filter="setFilter" />
                 </section>
-                <add-note @added="addNote" />
+                <add-note @added="addNote"/>
                 <section class="pinned" v-if="notes">
                     <div>PINNED</div>
                     <section class="notes-list">
@@ -39,7 +40,8 @@ export default {
     data() {
         return {
             notes: null,
-            filterBy: ''
+            filterBy: '',
+            mail: null
         }
     },
     methods: {

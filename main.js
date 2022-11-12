@@ -22,7 +22,7 @@ const options = {
     },
     created() {
         eventBus.on('composeEmailFromNote', this.composeEmailFromNote)
-        eventBus.on('composeNoteFromEmail',this.composeNoteFromEmail)
+        eventBus.on('composeNoteFromEmail', this.composeNoteFromEmail)
     },
     methods: {
         composeEmailFromNote(note) {
@@ -34,8 +34,13 @@ const options = {
                 eventBus.emit('composeEmailWithNoteData', note)
             }, 600)
         },
-        composeNoteFromEmail(email){
-            console.log(email)
+        composeNoteFromEmail(email) {
+            this.$router.push({
+                path: '/keep/notes',
+            })
+            setTimeout(() => {
+                eventBus.emit('composeNoteWithEmailData', email)
+            }, 600)
         }
 
     }
