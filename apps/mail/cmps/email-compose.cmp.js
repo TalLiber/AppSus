@@ -65,6 +65,7 @@ export default {
                     eventBus.emit('setCurrDraft', email)
                     this.emailProps.subject = note.info.title
                     this.$refs.quill.innerText = note.info.text
+                    this.emailProps.body = note.info.text
                 })
         },
         sendEmail() {

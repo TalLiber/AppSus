@@ -69,8 +69,6 @@ input {
     }
     .email-preview .date{
         position:unset;
-        /* right: unset;
-        top: unset; */
     }
 }
 
@@ -80,6 +78,6 @@ input {
     }
 
     .email-subject {
-        width: unset;
+        width: 70%;
     }
 }

@@ -78,10 +78,6 @@ function createDraftEmail() {
     return storageService.post(EMAILS_KEY, draftEmail)
 }
 
-
-
-
-
 // Local Funcs-factory
 function _createEmails() {
     let emails = utilService.loadFromStorage(EMAILS_KEY)

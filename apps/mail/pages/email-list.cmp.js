@@ -145,9 +145,6 @@ export default {
         },
         setEmailReadStat(email) {
             emailService.put(email)
-            //todo-compact those funcs-add query() to render relevant
-            // .then(()=>emailService.query()
-            // .then(emails => this.emails = emails))
         },
         toggleTab(email) {
             emailService.put(email)
@@ -229,6 +226,14 @@ export default {
             handler() {
                 this.filterTab = this.$route.query.tab
                 this.getEmailsByTab()
+            }
+        },
+        '$route.query.compose': {
+            handler() {
+                //todo check why its not react to the clearInterval
+                if (!this.$route.query.compose) {
+                    clearInterval(this.composeInterval)
+                }
             }
         },
         filterBy: {
