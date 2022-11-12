@@ -1,6 +1,7 @@
 
 import { emailService } from '../services/mail.service.js'
 import { svgService } from '../../../services/svg.service.js'
+import { eventBus } from '../../../services/event-bus.service.js'
 
 export default {
     props: [],
@@ -21,6 +22,7 @@ export default {
                    <span v-for="label in email.labels">
                        {{label}}
                     </span>
+                    
                 </div>
             </section>
 			<header class="flex space-between">
@@ -36,6 +38,8 @@ export default {
         <footer>
             <button>Replay</button>
             <button>Forward</button>
+            <!-- //todo -design -->
+            <button @click="composeNoteFromEmail">Send To Note</button>
         </footer>
 
 	</section>
@@ -51,6 +55,9 @@ export default {
         this.prvTab = this.$route.query.tab
     },
     methods: {
+        composeNoteFromEmail(){
+            eventBus.emit('composeNoteFromEmail',this.email)
+        },
         loadEmailDetails() {
             emailService.get(this.emailId)
                 .then(email => this.email = email)

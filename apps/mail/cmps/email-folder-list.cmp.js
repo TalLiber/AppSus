@@ -78,16 +78,14 @@ export default {
         this.getLabels()
         eventBus.on('cancelLabeling', this.cancelLabeling)
         eventBus.on('createLabel', this.createLabel)
-        eventBus.on('composeNote', this.composeNote)
+        
     },
     methods: {
         setTab(tab) {
             this.$router.push({ path: '/mail/list', query: { tab: `${tab}` } })
             eventBus.emit('zeroingLabelFilter')
         },
-        composeNote(note) {
-            console.log(note)
-        },
+      
         composeEmail() {
             const tab = this.$route.query.tab
             this.$router.push({

@@ -1,6 +1,7 @@
 import { svgService } from '../../../services/svg.service.js'
 import { eventBus } from '../../../services/event-bus.service.js'
 
+
 import noteActions from './note-actions.cmp.js'
 import textNote from './note-text.cmp.js'
 import todoNote from './note-todo.cmp.js'
@@ -27,7 +28,7 @@ export default {
             </router-link>
         </section>
         `,
-    created() {},
+    created() { },
     data() {
         return {}
     },
@@ -42,7 +43,7 @@ export default {
             this.$emit('updateImgUrl', this.note.id, ev)
         },
         sendMail() {
-            eventBus.emit('composeNote', this.note)
+            eventBus.emit('composeEmailFromNote', this.note)
         }
     },
     computed: {

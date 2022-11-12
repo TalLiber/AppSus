@@ -1,6 +1,6 @@
 import { emailService } from '../services/mail.service.js'
 import { svgService } from '../../../services/svg.service.js'
-import { eventBus } from "../../../services/event-bus.service.js"
+import { eventBus } from '../../../services/event-bus.service.js'
 
 export default {
     props: [],
@@ -37,6 +37,9 @@ export default {
             },
         }
     },
+    created(){
+        eventBus.on('composeEmailWithNoteData',this.composeEmailWithNoteData)
+    },
     watch: {
         emailProps: {
             handler() {
@@ -45,9 +48,13 @@ export default {
             deep: true
         }
     },
-
-    //todo-consider make that cmp stupid and emit props
     methods: {
+        //todo-handle that info from note
+        composeEmailWithNoteData(note){
+            emailService.createDraftEmail()
+                .then(email => eventBus.emit('setCurrDraft', email))
+            console.log(note)
+        },
         sendEmail() {
             const { emailProps: { to, subject, body } } = this
             emailService.sendEmail(to, subject, body)
