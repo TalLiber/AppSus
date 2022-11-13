@@ -1,17 +1,14 @@
 
 import { storageService } from '../../../services/async-storage.service.js'
 import { utilService } from '../../../services/util.service.js'
-// import { eventBus } from "../../../services/event-bus.service.js"
 
 const EMAILS_KEY = 'emailDB'
 const LABELS_KEY = 'labelsDB'
-
 
 const loggedinUser = {
     email: 'user@appsus.com',
     fullname: 'Mahatma Appsus'
 }
-
 _createEmails()
 _createLabels()
 

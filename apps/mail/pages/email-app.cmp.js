@@ -5,9 +5,6 @@ import emailFolderList from '../cmps/email-folder-list.cmp.js'
 
 import emailList from './email-list.cmp.js'
 import emailDetails from './email-details.cmp.js'
-//import mailService
-// import { emailService } from '../services/mail.service.js'
-
 
 export default {
     name: 'email-app',

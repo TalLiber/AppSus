@@ -8,7 +8,6 @@ export default {
     props: [],
     template: `
    	<section class="email-folder-list flex column">
-		<!-- //todo-svg for all divs\ -->
 		<div class="compose-wrapper flex ">
 			<div class="compose flex align-center center" @click="composeEmail()">
 				<div class="compose-icon" v-html="getMailSvg('pencil')"></div>
