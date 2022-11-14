@@ -75,10 +75,10 @@ export default {
 
         eventBus.on('filter-by', this.setFilterByProp)
         eventBus.on('sort-by', this.setSortByProp)
-        // draftemail handlers CE
+        // draftemail handlers cus-events
         eventBus.on('setCurrDraft', this.setCurrDraft)
         eventBus.on('updateCurrDraft', this.updateCurrDraft)
-        //label handlers CE
+        //label handlers cus-events
         eventBus.on('zeroingLabelFilter', this.setLabelFilter)
         eventBus.on('setLabelFilter', this.setLabelFilter)
         eventBus.on('updateLabels', this.getLabels)
@@ -116,8 +116,8 @@ export default {
             emailService.query()
                 .then(emails => this.emails = emails)
                 .then(() => {
-                    //when nav by tab
                     let filteredEmails
+                    //when nav by tab
                     if (!this.isLabelFilter) {
                         //inbox||starred
                         if (this.filterTab === 'inbox') {
@@ -181,7 +181,6 @@ export default {
         updateCurrDraft(emailProps) {
             this.currDraft.subject = emailProps.subject
             this.currDraft.body = emailProps.body
-            // console.log(emailProps)
         }
     },
     computed: {
@@ -247,6 +246,5 @@ export default {
                 this.sortByOrder
             }
         }
-
     }
 }

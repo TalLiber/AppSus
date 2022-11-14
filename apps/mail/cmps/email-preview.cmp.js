@@ -73,7 +73,4 @@ export default {
             return this.email.name
         }
     },
-    components: {
-
-    }
 }

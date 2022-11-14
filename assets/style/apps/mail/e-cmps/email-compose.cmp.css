@@ -1,38 +1,38 @@
-.email-compose{
-position: fixed;
-bottom: 0;
-/* right: 50px; */
-right: 10px;
-background-color: white;
-/* width: 450px; */
-height: 430px;
-width: 350px;
-border-top-left-radius: 10px;
-border-top-right-radius: 10px;
-box-shadow:0px 0px 14px 0px rgba(211, 211, 211, 0.99);
+.email-compose {
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    background-color: white;
+    height: 430px;
+    width: 350px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    box-shadow: 0px 0px 14px 0px rgba(211, 211, 211, 0.99);
 }
 
-.email-compose header{
+.email-compose header {
     padding: 0 16px;
     padding-inline-end: 0;
     background-color: #f2f4fa;
 }
-.email-compose header button{
+
+.email-compose header button {
     width: 40px !important;
     height: 40px !important;
 }
 
-.email-compose header h4{
+.email-compose header h4 {
     font-weight: 650;
     font-size: 14px;
 }
-.main-content form>*:not(:last-child){
+
+.main-content form>*:not(:last-child) {
     border: 0;
     padding-inline-end: 0;
-    border-bottom: .3px solid rgb(128,128,128,15%);
+    border-bottom: .3px solid rgb(128, 128, 128, 15%);
 }
 
-.main-content form input{
+.main-content form input {
     padding-inline-start: 16px;
 }
 
@@ -43,18 +43,20 @@ box-shadow:0px 0px 14px 0px rgba(211, 211, 211, 0.99);
     align-items: center;
     padding-inline-start: 3px;
 }
-.ql-toolbar.ql-snow svg{
-  height: 20px;
+
+.ql-toolbar.ql-snow svg {
+    height: 20px;
 }
-#quill-container{
+
+#quill-container {
     border: 0;
 }
 
-.main-content textarea{
-resize: none;
+.main-content textarea {
+    resize: none;
 }
 
-.send-btn{
+.send-btn {
     align-self: flex-start;
     color: white;
     background-color: #0b57d0;
@@ -66,16 +68,10 @@ resize: none;
     border-radius: 40px;
 }
 
-@media (min-width:550px){
-    .email-compose{
-        position: fixed;
-        bottom: 0;
+@media (min-width:550px) {
+    .email-compose {
         right: 50px;
-        background-color: white;
         width: 450px;
         height: 430px;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        box-shadow:0px 0px 14px 0px rgba(211, 211, 211, 0.99);
-        }
+    }
 }

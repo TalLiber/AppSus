@@ -1,37 +1,39 @@
-
-.email-details{
-    background-color:inherit;
+.email-details {
+    background-color: inherit;
     padding: 15px;
 }
 
-.email-details>*{
+.email-details>* {
     margin-bottom: 15px;
 }
 
-.action-bar>*{
+.action-bar>* {
     margin-inline-end: 15px;
     cursor: pointer;
 }
-.action-bar>*:hover{
+
+.action-bar>*:hover {
     background-color: rgb(100 121 143 / 8%);
     border-radius: 50%;
     box-shadow: 0px 0px 1px 8px rgb(100 121 143 / 8%);
 }
 
-.details-content{
-    flex:1;
+.details-content {
+    flex: 1;
     max-height: 450px;
 }
-.details-content .labels-bar{
+
+.details-content .labels-bar {
     margin-bottom: 20px;
     padding-inline-start: 15px;
 }
-.labels-bar h2{
+
+.labels-bar h2 {
     font-weight: 500;
 }
-.labels-det >*{
+
+.labels-det>* {
     margin-inline-start: 10px;
-    
     background-color: #d5d5d5;
     font-size: .7em;
     border-radius: 3px;
@@ -40,21 +42,21 @@
     color: #737373;
 }
 
-.details-content header{
+.details-content header {
     justify-content: space-between;
     margin-bottom: 30px;
 }
-.details-content header h4:not(:last-child){
+
+.details-content header h4:not(:last-child) {
     font-weight: 600;
 }
 
-.details-content p{
-    /* width:70%; */
+.details-content p {
     width: 95%;
-    line-height: 1.25; 
+    line-height: 1.25;
 }
 
-.email-details footer>*{
+.email-details footer>* {
     width: 104px;
     margin-inline-end: 8px;
     border-radius: 25px;
@@ -62,34 +64,33 @@
     margin-top: 8px;
 }
 
+
 /* Media Query */
+
+
 /* Mobile */
-@media (max-width:340px){
-    .details-content{
+
+@media (max-width:340px) {
+    .details-content {
         font-size: .9em;
     }
-    .email-details footer>*{
+    .email-details footer>* {
         width: 80px;
     }
-    .details-content .labels-bar{
+    .details-content .labels-bar {
         margin-bottom: 20px;
         padding-inline-start: 0;
     }
-    .details-content header{
+    .details-content header {
         justify-content: flex-start;
-     
     }
-    .details-content header .small{
+    .details-content header .small {
         margin-inline-start: 10px;
-     
     }
-
 }
 
-@media (min-width:450px){
-
-    .details-content p{
-        width:73%;
+@media (min-width:450px) {
+    .details-content p {
+        width: 73%;
     }
-
 }
